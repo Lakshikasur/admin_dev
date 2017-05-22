@@ -1,0 +1,102 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %>
+  <%- partial('../layout/common/sidebar.ejs') %>
+  <div class="content_view" id="allusers">
+    <ul class="breadcrumb"><li><a href="/dashboard?auth=<%= auth %>">Dashboard</a></li>
+      <li><a href="/package/init?auth=<%= auth %>">Packages</a></li>
+    </ul>
+    <h1 style="margin-top: 0;">
+      Package
+      <small>Add Section To Package</small>
+
+
+    </h1>
+    <% if(msg && st){ %>
+    <table id="packgeSectionData" class="table table-bordered table-striped">
+      <thead>
+      <th>Package</th>
+      <th>Curriculum</th>
+      <th>Grade</th>
+      <th>Subject</th>
+      <th>Section</th>
+      <th>Add</th>
+
+      </thead>
+      <tbody>
+
+      <% packsec.forEach(function(packsec){ %>
+      <tr>
+        <td width="20%" data-value="<%= packsec.package_id %>" id="p_id"><%= packsec.package %></td>
+        <td width="20%" data-value="<%= packsec.curriculum_id %>" id="c_id"><%= packsec.curriculumn %></td>
+        <td width="16%" data-value="<%= packsec.grade_id %>" id="g_id"><%= packsec.grade %></td>
+        <td width="12%" data-value="<%= packsec.subject_id %>" id="s_id"><%= packsec.subject %></td>
+        <td width="20%">
+          <select class="form-control" id="<%= packsec.package_id %>" name="h_type">
+            <option value="">Select Section</option>
+            <% for(var i = 0; i < section.length; i++) { %>
+            <option value=<%= section[i].id %>><%= section[i].name %></option>
+            <% } %>
+          </select>
+        </td>
+        <td width="8%">
+          <button type="button" class="btn btn-primary"  id="packageSection" style="margin-top: 1px;">Add</button>
+        </td>
+
+        <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+
+      </tr>
+      <% }); %>
+
+      </tbody>
+
+    </table>
+
+    <% } %>
+    <% if(msg && !st){ %>
+    <table id="packgeSectionData" class="table table-bordered table-striped">
+      <thead>
+      <th>Package</th>
+      <th>Curriculum</th>
+      <th>Grade</th>
+      <th>Subject</th>
+      <th>Section</th>
+      <th>Add</th>
+
+      </thead>
+      <tbody>
+
+      <% packsec.forEach(function(packsec){ %>
+      <tr>
+        <td width="20%" data-value="<%= packsec.package_id %>" id="p_id"><%= packsec.package %></td>
+        <td width="20%" data-value="<%= packsec.curriculum_id %>" id="c_id"><%= packsec.curriculumn %></td>
+        <td width="16%" data-value="<%= packsec.grade_id %>" id="g_id"><%= packsec.grade %></td>
+        <td width="12%" data-value="<%= packsec.subject_id %>" id="s_id"><%= packsec.subject %></td>
+        <td width="20%">
+          <select class="form-control" id="<%= packsec.package_id %>" name="h_type">
+            <option value="">Select Section</option>
+            <% for(var i = 0; i < section.length; i++) { %>
+            <option value=<%= section[i].id %>><%= section[i].name %></option>
+            <% } %>
+          </select>
+        </td>
+        <td width="8%">
+          <button type="button" class="btn btn-primary"  id="packageSectionSingle" style="margin-top: 1px;">Add</button>
+        </td>
+        <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+
+      </tr>
+      <% }); %>
+
+      </tbody>
+
+    </table>
+    <% } %>
+
+
+
+
+  </div>
+</div>
+<%- partial('../layout/common/footer.ejs') %>
+
+<% block('localScripts', '<script src="../js/fontend/package_section_add.js"></script>') %>

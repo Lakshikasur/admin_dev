@@ -1,0 +1,74 @@
+<%- partial('layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+<%- partial('layout/common/sidebar.ejs') %><!-- sidebar layout-->
+<div class="message-container content_view">
+  <div class="row dashbord_main">
+    <div class="col-md-11 col-md-offset-1 launch-icon-panel">
+      <%if(role==1){ %>
+      <div class="col-md-3 launch-icon-panel">
+      <section ng-controller="NotificationShowCtrl" ng-cloak>
+        <notification-icon animation="grow" count="notificationCount['0'].num" ng-if="notificationCount['0'].userID==getID.id">
+          <a href="/feed/show?auth=<%= auth %>">
+          <i class="fa fa-bell-o fa-5x"></i></a>
+        </notification-icon>
+        <label>Notification</label>
+      </section>
+        </div>
+      <div class="col-md-3 launch-icon-panel">
+            <a href="/usersauth?auth=<%= auth %>">
+            <i class="fa fa-user-o fa-5x"></i></a>
+            <label>Admin Users</label>
+      </div>
+      <div class="col-md-3 launch-icon-panel">
+        <a href="/section/loadAddPackageSec?auth=<%= auth %>">
+        <i class="fa fa-tasks fa-5x"></i></a>
+        <label>Package Section</label>
+      </div>
+      <div class="col-md-3 launch-icon-panel">
+      <a href="/student/init?auth=<%= auth %>">
+      <i class="fa fa-graduation-cap fa-5x"></i></a>
+        <label>Students</label>
+      </div>
+    <% } %>
+      <%if(role==3){ %>
+    <div class="col-md-3 launch-icon-panel">
+      <section ng-controller="NotificationShowCtrl" ng-cloak>
+        <notification-icon animation="grow" count="notificationCount['0'].count">
+          <a href="feed/show?auth=<%= auth %>">
+          <i class="fa fa-bell-o fa-5x"></i></a>
+        </notification-icon>
+        <label>Notification</label>
+      </section>
+    </div>
+    <div class="col-md-3 launch-icon-panel">
+      <a href="module/init?auth=<%= auth %>">
+      <i class="fa fa-folder fa-5x"></i></a>
+      <label>Module</label>
+    </div>
+    <div class="col-md-3 launch-icon-panel">
+      <a href="unit/init?auth=<%= auth %>">
+      <i class="fa fa-archive fa-5x"></i></a>
+      <label>Unit</label>
+    </div>
+    <div class="col-md-3 launch-icon-panel">
+      <a href="resource/init?auth=<%= auth %>">
+      <i class="fa fa-video-camera fa-5x"></i></a>
+      <label>Recourse</label>
+    </div>
+
+
+   <!--<div class="col-md-2 launch-icon-panel">
+      <a href="assessment/init"/>
+      <i class="fa fa-file-video-o fa-5x"></i>
+      <label>Quiz Config</label>
+    </div>-->
+  <% } %>
+    </div>
+    <div class="landing-img">
+      <img class="img-responsive landing-bottom-img" src="images/landing.gif" />
+    </div>
+
+  </div>
+</div>
+<!-- footer layout-->
+
+

@@ -1,0 +1,99 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+
+    <ul class="breadcrumb"><li><a href="/dashboard?auth=<%= auth %>">Dashboard</a></li>
+      <li><a href="/prize/prize_summery?auth=<%= auth %>">Prize Configuration</a></li>
+    </ul>
+    <h1 style="margin-top: 0;">
+      Prize
+      <small>config Prize</small>
+    </h1>
+
+
+    <div class="col-md-8 col-md-offset-2 well formpackage">
+      <div class="row">
+        <form name="prizeconfigadd">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Section</label>
+              <select id="sec_type" name="sec_type" class="form-control">
+                <option value="">Select Section</option>
+                    <% for(var i = 0; i < selection.length; i++) { %>
+                <option value=<%= selection[i].id %>><%= selection[i].name %></option>
+                <% } %>
+              </select>
+              <div class="help-block" id="error_section"></div>
+            </div>
+            <div class="form-group">
+              <label>Prize Type</label>
+                <select id="prize_type" name="prize_type" class="form-control">
+                  <option value="">Select Prize Type</option>
+                  <option value="GRADE_PRIZE">Grade Prize</option>
+                  <option value="SUBJECT_PRIZE">Subject Prize</option>
+                </select>
+              <div class="help-block" id="error_prize_type"></div>
+            </div>
+            <div class="form-group subjdivhide" id="pzsubject">
+              <label>Subject</label>
+              <select id="s_type" name="s_type" class="form-control" disabled>
+              </select>
+              <div class="help-block subjdivhide" id="error_subject"></div>
+            </div>
+
+            <div class="form-group" id="dpzconf_name">
+              <label>Config Name</label>
+              <input id="pzconf_name" name="pzconf_name" class="form-control" placeholder="Prize Name" type="text">
+              <div class="help-block" id="error_pzconf_name"></div>
+            </div>
+
+
+            <div class="row">
+              <div class='form-group col-md-6'>
+                <label>Start Date</label>
+                <div class='input-group date' id='startdatepicker'>
+                  <input type='text' id="st_date" name="st_date" class="form-control"/>
+                  <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+              <div class='form-group col-md-6'>
+                <label>End Date</label>
+                <div class='input-group date' id='enddatepicker'>
+                  <input type='text' id="end_date" name="end_date" class="form-control"/>
+                  <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+
+
+            <!--
+          <div class="form-group">
+              <label>Prize Type</label>
+                <select id="qiz_type" name="qiz_type" class="form-control">
+                  <option value="">Select Prize Type</option>
+                  <option value="SUBJECT_TEST">SUBJECT TEST</option>
+                  <option value="MODULE_TEST">MODULE TEST</option>
+                </select>
+              <div class="help-block" id="error_quiz_type"></div>
+            </div>
+           -->
+
+          </div>
+
+            <div id="psucsees_msg"></div>
+            <button type="button" id="confirmprize" class="btn btn-primary">Add Data</button>
+            <input type='hidden' id='_csrf' name='_csrf' value='<%= _csrf %>'>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+<% block('localScripts', '<script src="../js/fontend/prize_lib.js"></script>') %>

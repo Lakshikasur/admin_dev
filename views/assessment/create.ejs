@@ -1,0 +1,124 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+
+    <ul class="breadcrumb"><li><a href="/dashboard?auth=<%= auth %>">Dashboard</a></li>
+      <li><a href="/assessment/init?auth=<%= auth %>">Quiz</a></li>
+    </ul>
+    <h1 style="margin-top: 0;">
+      Quiz
+      <small>config quiz</small>
+
+
+    </h1>
+    <div class="col-md-8 col-md-offset-2 well formpackage">
+      <div class="row">
+        <form name="quizconfig">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Section</label>
+              <select id="sec_type" name="sec_type" class="form-control">
+                <option value="">Select Section</option>
+                <% for(var i = 0; i < selection.length; i++) { %>
+                <option value=<%= selection[i].id %>><%= selection[i].name %></option>
+                <% } %>
+              </select>
+              <div class="help-block" id="error_section"></div>
+            </div>
+            <div class="form-group">
+              <label>Test Type</label>
+              <select id="qiz_type" name="qiz_type" class="form-control">
+                <option value="">Select QuizType</option>
+                <option value="SUBJECT_TEST">SUBJECT TEST</option>
+                <option value="MODULE_TEST">MODULE TEST</option>
+              </select>
+              <div class="help-block" id="error_quiz_type"></div>
+            </div>
+            <div class="form-group divhide" id="qsubject">
+              <label>Subject</label>
+              <select id="s_type" name="s_type" class="form-control" disabled>
+              </select>
+              <div class="help-block divhide" id="error_subject"></div>
+            </div>
+            <div class="form-group divhide" id="qmodule">
+              <label>Module</label>
+              <select id="m_type" name="m_type" class="form-control">
+
+              </select>
+              <div class="help-block" id="error_module"></div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label>Number Of Question</label>
+                <select id="q_amount" name="q_amount" class="form-control">
+                  <option value="">Select Question Amount</option>
+                  <option value="5">05</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="40">40</option>
+                  <option value="45">45</option>
+                  <option value="50">50</option>
+
+                </select>
+                <div class="help-block" id="error_no_of_q"></div>
+              </div>
+              <div class="form-group col-md-4">
+                <label>Schedule Time</label>
+                <select id="s_time" name="s_time" class="form-control">
+                  <option value="">Select Time(Min)</option>
+                  <option value="00:05:00">05(Min)</option>
+                  <option value="00:10:00">10(Min)</option>
+                  <option value="00:15:00">15(Min)</option>
+                  <option value="00:20:00">20(Min)</option>
+                  <option value="00:25:00">25(Min)</option>
+                  <option value="00:30:00">30(Min)</option>
+                  <option value="00:35:00">35(Min)</option>
+                  <option value="00:40:00">40(Min)</option>
+                  <option value="00:45:00">45(Min)</option>
+                  <option value="00:50:00">50(Min)</option>
+                  <option value="00:55:00">55(Min)</option>
+                  <option value="01:00:00">60(Min)</option>
+
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label>Time Bonus</label>
+                <select id="t_bonus" name="t_bonus" class="form-control">
+                  <option value="">Select Time(Min)</option>
+                  <option value="05:00">05(Min)</option>
+                  <option value="10:00">10(Min)</option>
+                  <option value="15:00">15(Min)</option>
+                  <option value="20:00">20(Min)</option>
+                  <option value="25:00">25(Min)</option>
+                  <option value="30:00">30(Min)</option>
+                  <option value="35:00">35(Min)</option>
+                  <option value="40:00">40(Min)</option>
+                  <option value="45:00">45(Min)</option>
+                  <option value="50:00">50(Min)</option>
+                  <option value="55:00">55(Min)</option>
+
+
+                </select>
+              </div>
+
+            </div>
+            <div id="psucsees_msg">
+            </div>
+            <button type="button" id="confirmquiz" class="btn btn-primary">Confirm</button>
+          </div>
+          <input type='hidden' id='_csrf' name='_csrf' value='<%= _csrf %>'>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+
+<% block('localScripts', '<script src="../js/fontend/configQuiz.js"></script>') %>

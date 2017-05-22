@@ -1,0 +1,210 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Question Making
+      <small>add (<%= sec_type+ ' < ' +m_type+ ' < ' + mu_type %>)</small>
+    </h1>
+    <ul class="breadcrumb"><li><a href="/dashboard?auth=<%= auth %>">Dashboard</a></li>
+      <li><a href="/assessment/addquizmeta?auth=<%= auth %>">Question MetaData</a></li>
+    </ul>
+    <div class="row" id="q_addarea">
+      <div class="section col-md-12">
+        <!-- Container for the question editor api to load into -->
+        <div class="learnosity-question-editor rendered">
+          <div class="lrn lrn-qe">
+            <div class="lrn-qe-ui lrn-qe-bp-xs lrn-qe-bp-xsm lrn-qe-bp-sm lrn-qe-bp-md lrn-qe-bp-lg" data-lrn-qe-app-wrapper="" style="position: relative;"><span data-lrn-qe-layout-tile-list="" style="display: none;"></span>
+              <div data-lrn-qe-layout-tile-list="rendered" class="lrn-qe-tiles-list-xs lrn-qe-tiles-list-sm lrn-qe-tiles-list-md" style="position: relative;">
+                <div class="lrn-qe-tiles-container">
+                  <div class="lrn-qe-tiles-nav">
+                    <div data-lrn-qe-tiles-search-outlet1="">
+                      <div>
+                        <div class="lrn-qe-form-group">
+                          <label for="question-filter" class="lrn-qe-label lrn-qe-sr-only">Search question type</label>
+                          <input class="lrn-qe-form-control lrn-qe-form-control-lg" id="question-filter" type="search" placeholder="Search...">
+                        </div>
+                      </div>
+                    </div>
+                    <div data-lrn-qe-tiles-groups-outlet2="" data-toggle="div" data-url="lrn-qe-tiles-list.ulmc">
+                      <div>
+                        <ul class="lrn-qe-nav lrn-qe-nav-pills lrn-qe-nav-stacked limc">
+                          <li data-lrn-qe-tile-group="" class="lrn-qe-li qtGroup lrn-qe-nav-item limc"><a id="grRef_mcq" class="lrn-qe-a lrn-qe-nav-link  lrn-active" role="button" href="#" data-groupreference="mcq"><span class="glyphicon glyphicon-th-list"></span> Multiple Choice</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div data-lrn-qe-tiles-groups-outlet3="" data-toggle="div" data-url="lrn-qe-tiles-list.ulws">
+                      <div>
+                        <ul class="lrn-qe-nav lrn-qe-nav-pills lrn-qe-nav-stacked liws">
+                          <li data-lrn-qe-tile-group="" class="lrn-qe-li qtGroup lrn-qe-nav-item liws"><a id="grRef_writespeak" class="lrn-qe-a lrn-qe-nav-link lrn-active" role="button" href="#" data-groupreference="writespeak"><span class="glyphicon glyphicon-pencil"></span> View & Answer</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div data-lrn-qe-tiles-groups-outlet4="" data-toggle="div" data-url="lrn-qe-tiles-list.uldagdrop">
+                      <div>
+                        <ul class="lrn-qe-nav lrn-qe-nav-pills lrn-qe-nav-stacked lidd hide">
+                          <li data-lrn-qe-tile-group="" class="lrn-qe-li qtGroup lrn-qe-nav-item lidd"><a id="grRef_dragdrop" class="lrn-qe-a lrn-qe-nav-link lrn-active" role="button" href="#" data-groupreference="writespeak"><span class="glyphicon glyphicon-share-alt"></span> Drag & Drop</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div data-lrn-qe-tiles-groups-outlet5="" data-toggle="div" data-url="lrn-qe-tiles-list.ultruefalse">
+                      <div>
+                        <ul class="lrn-qe-nav lrn-qe-nav-pills lrn-qe-nav-stacked litf">
+                          <li data-lrn-qe-tile-group="" class="lrn-qe-li qtGroup lrn-qe-nav-item litf"><a id="grRef_truefalse" class="lrn-qe-a lrn-qe-nav-link lrn-active" role="button" href="#" data-groupreference="writespeak"><span class="glyphicon glyphicon-ok"></span> True & False</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div data-lrn-qe-tiles-groups-outlet6="" data-toggle="div" data-url="lrn-qe-tiles-list.ulyesno">
+                      <div>
+                        <ul class="lrn-qe-nav lrn-qe-nav-pills lrn-qe-nav-stacked liyn">
+                          <li data-lrn-qe-tile-group="" class="lrn-qe-li qtGroup lrn-qe-nav-item liyn"><a id="grRef_yesno" class="lrn-qe-a lrn-qe-nav-link lrn-active" role="button" href="#" data-groupreference="writespeak"><span class="glyphicon glyphicon-thumbs-up"></span> Yes & No</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div data-lrn-qe-tiles-groups-outlet7="" data-toggle="div" data-url="lrn-qe-tiles-list.ulviewimage">
+                      <div>
+                        <ul class="lrn-qe-nav lrn-qe-nav-pills lrn-qe-nav-stacked livi">
+                          <li data-lrn-qe-tile-group="" class="lrn-qe-li qtGroup lrn-qe-nav-item livi"><a id="grRef_vieimageanswer" class="lrn-qe-a lrn-qe-nav-link lrn-active" role="button" href="#" data-groupreference="writespeak"><span class="glyphicon glyphicon-thumbs-up"></span> View & ImageAnswer</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div data-lrn-qe-tiles-questions-outlet="" class="lrn-qe-tiles-list-wrapper">
+                    <div>
+                      <ul class="lrn-qe-tiles-list ulmc">
+                        <li>
+                          <a href="/assessment/multiple_choice?auth=<%= auth %>&sec=<%= sec_type+'&m=' +m_type+ '&u=' + mu_type+'&qs='+4 %>" role="button" class="lrn-qe-a lrn-qe-tile-preview" data-id="c1588" data-lrn-qe-tile-preview="">
+                            <div class="lrn-qe-tile-header">
+                              <div data-lrn-qe-tile-title="Multiple Choice – Standard" class="lrn-qe-tile-heading">Multiple Choice – Standard</div>
+                            </div>
+                            <div class="lrn-qe-tile-body">
+                              <div class="lrn-qe-tile-img">
+                                <div class="lrn-qe-tile-img-inner"><img src="../images/mcqdefault.png"></div>
+                              </div>
+                              <div class="lrn-qe-tile-description">
+                                <p>Standard Multiple Choice Question</p><span class="glyphicon glyphicon-plus-sign"></span></div>
+                            </div>
+                          </a>
+
+                        </li>
+                      </ul>
+                      <ul class="lrn-qe-tiles-list ulws hide">
+                        <li>
+                          <a href="/assessment/written_spoken?auth=<%= auth %>&sec=<%= sec_type+'&m=' +m_type+ '&u=' + mu_type+'&qs='+4 %>" role="button" class="lrn-qe-a lrn-qe-tile-preview" data-id="c1588" data-lrn-qe-tile-preview="">
+                            <div class="lrn-qe-tile-header">
+                              <div data-lrn-qe-tile-title="Multiple Choice – Standard" class="lrn-qe-tile-heading">View & Answer – Standard</div>
+                            </div>
+                            <div class="lrn-qe-tile-body">
+                              <div class="lrn-qe-tile-img">
+                                <div class="lrn-qe-tile-img-inner"><img src="../images/mcqdefault.png"></div>
+                              </div>
+                              <div class="lrn-qe-tile-description">
+                                <p>Standard View & Answer Question</p><span class="glyphicon glyphicon-plus-sign"></span></div>
+                            </div>
+                          </a>
+
+                        </li>
+                      </ul>
+                      <ul class="lrn-qe-tiles-list uldagdrop hide">
+                        <li>
+                          <a href="" role="button" class="lrn-qe-a lrn-qe-tile-preview" data-id="c1588" data-lrn-qe-tile-preview="">
+                            <div class="lrn-qe-tile-header">
+                              <div data-lrn-qe-tile-title="Multiple Choice – Standard" class="lrn-qe-tile-heading">Drag & Drop – Standard</div>
+                            </div>
+                            <div class="lrn-qe-tile-body">
+                              <div class="lrn-qe-tile-img">
+                                <div class="lrn-qe-tile-img-inner"><img src="../images/mcqdefault.png"></div>
+                              </div>
+                              <div class="lrn-qe-tile-description">
+                                <p>Standard Drag & Drop Question</p><span class="glyphicon glyphicon-plus-sign"></span></div>
+                            </div>
+                          </a>
+
+                        </li>
+                      </ul>
+                      <ul class="lrn-qe-tiles-list ultruefalse hide">
+                        <li>
+                          <a href="/assessment/true_false?auth=<%= auth %>&sec=<%= sec_type+'&m=' +m_type+ '&u=' + mu_type+'&qs='+2 %>" role="button" class="lrn-qe-a lrn-qe-tile-preview" data-id="c1588" data-lrn-qe-tile-preview="">
+                            <div class="lrn-qe-tile-header">
+                              <div data-lrn-qe-tile-title="True False Choice – Standard" class="lrn-qe-tile-heading">True & False – Standard</div>
+                            </div>
+                            <div class="lrn-qe-tile-body">
+                              <div class="lrn-qe-tile-img">
+                                <div class="lrn-qe-tile-img-inner"><img src="../images/mcqdefault.png"></div>
+                              </div>
+                              <div class="lrn-qe-tile-description">
+                                <p>Standard Written & Spoken Question</p><span class="glyphicon glyphicon-plus-sign"></span></div>
+                            </div>
+                          </a>
+
+                        </li>
+                        <li class="hide">
+                          <a href="/assessment/true_false?auth=<%= auth %>&sec=<%= sec_type+'&m=' +m_type+ '&u=' + mu_type+'&qs='+2 %>" role="button" class="lrn-qe-a lrn-qe-tile-preview" data-id="c1588" data-lrn-qe-tile-preview="">
+                            <div class="lrn-qe-tile-header">
+                              <div data-lrn-qe-tile-title="True False Choice – Standard" class="lrn-qe-tile-heading">True & False – Fill</div>
+                            </div>
+                            <div class="lrn-qe-tile-body">
+                              <div class="lrn-qe-tile-img">
+                                <div class="lrn-qe-tile-img-inner"><img src="../images/mcqdefault.png"></div>
+                              </div>
+                              <div class="lrn-qe-tile-description">
+                                <p>Standard Written & Spoken Question</p><span class="glyphicon glyphicon-plus-sign"></span></div>
+                            </div>
+                          </a>
+
+                        </li>
+                      </ul>
+                      <ul class="lrn-qe-tiles-list ulyesno hide">
+                        <li>
+                          <a href="/assessment/yes_no?auth=<%= auth %>&sec=<%= sec_type+'&m=' +m_type+ '&u=' + mu_type+'&qs='+6 %>" role="button" class="lrn-qe-a lrn-qe-tile-preview" data-id="c1588" data-lrn-qe-tile-preview="">
+                            <div class="lrn-qe-tile-header">
+                              <div data-lrn-qe-tile-title="Yes No – Standard" class="lrn-qe-tile-heading">Yes & No – Standard</div>
+                            </div>
+                            <div class="lrn-qe-tile-body">
+                              <div class="lrn-qe-tile-img">
+                                <div class="lrn-qe-tile-img-inner"><img src="../images/mcqdefault.png"></div>
+                              </div>
+                              <div class="lrn-qe-tile-description">
+                                <p>Standard Yes & No Question</p><span class="glyphicon glyphicon-plus-sign"></span></div>
+                            </div>
+                          </a>
+
+                        </li>
+                      </ul>
+                      <ul class="lrn-qe-tiles-list ulviewimage hide">
+                        <li>
+                          <a href="/assessment/view_imageAnswer?auth=<%= auth %>&sec=<%= sec_type+'&m=' +m_type+ '&u=' + mu_type+'&qs='+4 %>" role="button" class="lrn-qe-a lrn-qe-tile-preview" data-id="c1588" data-lrn-qe-tile-preview="">
+                            <div class="lrn-qe-tile-header">
+                              <div data-lrn-qe-tile-title="Yes No – Standard" class="lrn-qe-tile-heading">View & ImageAnswer – Standard</div>
+                            </div>
+                            <div class="lrn-qe-tile-body">
+                              <div class="lrn-qe-tile-img">
+                                <div class="lrn-qe-tile-img-inner"><img src="../images/mcqdefault.png"></div>
+                              </div>
+                              <div class="lrn-qe-tile-description">
+                                <p>Standard View & ImageAnswer Question</p><span class="glyphicon glyphicon-plus-sign"></span></div>
+                            </div>
+                          </a>
+
+                        </li>
+                      </ul>
+
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <input type='hidden' name='_csrf' id='_csrf' value='<%= _csrf %>'>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+<% block('localScripts', '<script src="../js/fontend/add_question.js"></script>') %>

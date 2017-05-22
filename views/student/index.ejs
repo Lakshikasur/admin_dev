@@ -1,0 +1,328 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Students
+      <small>students details</small>
+    </h1>
+
+    <div class="form-group col-md-12">
+      <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#confirm"  id="#confirm">Payment Confirm</a></li>
+        <li><a data-toggle="tab" href="admin/get/inactive/users" data-target="activeStudentData" id="#active">Active Students</a></li>
+        <li><a data-toggle="tab" href="#nonactive" data-target="inActivStudentData" id="#nonactive">Non Active Students</a></li>
+
+      </ul>
+      <div class="tab-content" >
+        <div id="confirm" class="tab-pane fade in active">
+          <div class="col-md-10 col-md-offset-1 well formpackage">
+
+            <table id="studentConTable" class="table table-bordred table-striped">
+
+              <thead>
+
+              <th>Email</th>
+              <th>Confirm</th>
+              </thead>
+              <tbody>
+
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+        <div id="active" class="tab-pane fade ">
+          <div class="col-md-10 col-md-offset-1 well formpackage">
+            <table id="studentActTable" class="table table-bordred table-striped">
+
+              <thead>
+              <th>ID</th>
+              <th>Email</th>
+              <th>reference</th>
+              <th>View</th>
+              </thead>
+               <tbody>
+
+               </tbody>
+
+            </table>
+
+          </div>
+        </div>
+        <div id="nonactive" class="tab-pane fade">
+          <div class="col-md-10 col-md-offset-1 well formpackage">
+            <table id="studentNoActTable" class="table table-bordred table-striped">
+
+              <thead>
+
+              <th>Email</th>
+              <th>Confirm</th>
+              </thead>
+              <tbody>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+      </div>-->
+
+      <ul class="nav nav-tabs">
+        <li class="act active"><a data-toggle="tab" href="#active"   data-onchnage="tabpane" data-path="activeStudentData"  data-url="admin/get/active/users" >Active Students</a></li>
+        <li class="inact"><a data-toggle="tab" href="#nonactive"  data-onchnage="tabpane" data-path="inActivStudentData"  data-url="admin/get/inactive/users">Non Active Students</a></li>
+        <li class="search"><a data-toggle="tab" href="#confirm" data-onchnage="tabpane" data-path="studentdata"   data-url="#">Search Payment Confirm</a>
+        </li>
+        <li class="updatePackage"><a data-toggle="tab" href="#updatePackage" data-path="updatePackageDetails"   data-url="admin/get/update/package/users">Update Package</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" >
+        <div id="active" class="tab-pane fade in active">
+
+          <div class="col-md-12 well formpackage">
+            <table id="studentActTable" class="table table-bordred table-striped">
+
+              <thead>
+              <th>Email</th>
+              <th>reference</th>
+              <th>View</th>
+              </thead>
+              <tbody id="activeStudentData">
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+        <div id="nonactive" class="tab-pane fade">
+          <div class="col-md-12  well formpackage">
+            <table id="studentNoActTable" class="table table-bordred table-striped">
+
+              <thead>
+
+              <thead>
+              <th>Email</th>
+              <th>reference</th>
+              <th>Active</th>
+              </thead>
+              <tbody id="inActivStudentData">
+
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+        <div id="confirm" class="tab-pane fade ">
+          <div class="col-md-6 col-md-offset-3  advance-search">
+            <form>
+              <div class="input-group input-group-lg">
+                <input type="text" name="search" id="advance-search" class="form-control advance-search-box"
+                       placeholder="Search Student Reference" aria-describedby="sizing-addon1">
+                <div class="separator">
+                  <div class="separator-boder"></div>
+                </div>
+                <span class="input-group-addon" name="searchRef" id="searchInActive"><i class="fa fa-eye-open"
+                                                                                        aria-hidden="true"></i></span>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-10 col-md-offset-1 well formpackage">
+
+            <table id="studenttable" class="table table-bordred table-striped">
+
+              <thead>
+
+              <th>Email</th>
+              <th>Confirm</th>
+              </thead>
+              <tbody id="studentdata">
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+        <div id="updatePackage" class="tab-pane fade ">
+          <div class="col-md-12 well formpackage">
+            <table id="studentActTable" class="table table-bordred table-striped">
+
+              <thead>
+              <th>Email </th>
+              <th>Package Price</th>
+              <th>Payment Method </th>
+              <th>Update Package</th>
+
+              </thead>
+              <tbody id="updatePackageDetails">
+
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+           aria-hidden="true" id="payConfirmModel">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Insert Payment details</h4>
+            </div>
+            <div class="modal-body">
+              <form name="Confirmform">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+
+                      <div class="form-group col-md-6">
+                        <label>Email</label>
+                        <input type="text" id="m_ename" name="m_ename" class="form-control" disabled>
+
+                        <div class="help-block"></div>
+                      </div>
+                      <div class="form-group col-md-6 editstpaymnetmodal" id="divamount">
+                        <label>Amount<span class="glyphicon glyphicon-remove-circle editPaymentModel" style="color:#286090"></span></label>
+                        <input type="text" id="m_amount" name="m_amount" class="form-control" disabled>
+
+                        <div class="help-block"></div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6 editstpaymnetmodal" id="divpay_method">
+                        <label>Payment Method<span class="glyphicon glyphicon-remove-circle editPaymentModel" style="color:#286090"></span></label>
+                        <input type="text" id="pa_type" name="pa_type" class="form-control" disabled>
+                        <!--   <select id="pa_type" name="pa_type" class="form-control">
+                             <option>Select Payment Method</option>
+                             <option value="Dialog Ez-Cash">Dialog Ez-Cash</option>
+                             <option value="Mobitel M-Cash">Mobitel M-Cash</option>
+                             <option value="Direct Debit">Direct Debit</option>
+                             <option value="Standing Order">Standing Order</option>
+
+                           </select>-->
+
+                        <div class="help-block"></div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Status</label>
+                        <input type="text" id="st_name" name="st_name" value="success" class="form-control" disabled>
+
+                        <div class="help-block"></div>
+                      </div>
+
+                      <input type="hidden" id="sttoken" name="sttoken">
+
+                    </div>
+
+                    <div class="row">
+                      <div id="alertSt">
+                      </div>
+                    </div>
+
+                    <%- partial('../layout/common/loader.ejs') %>
+                  </div>
+                </div>
+                <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="payconfirm">Active</button>
+              <button type="button" class="btn btn-secondary" id="paycancel" data-dismiss="modal">Close</button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+           aria-hidden="true" id="update_student_package">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Package Updation  details</h4>
+            </div>
+            <div class="modal-body">
+              <form name="Confirmform">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+
+                      <div class="form-group col-md-6">
+                        <label>Email</label>
+                        <input type="text" id="email" name="email" class="form-control" disabled>
+
+                        <div class="help-block"></div>
+                      </div>
+                      <div class="form-group col-md-6 editstpaymnetmodal" id="divamount">
+                        <label>Amount<span class="glyphicon glyphicon-remove-circle editPaymentModel" style="color:#286090"></span></label>
+                        <input type="text" id="amount" name="paid_amount" class="form-control" disabled>
+
+                        <div class="help-block"></div>
+                      </div>
+                      <input  name="signup_token" id="signup_token" type="hidden" >
+
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6 editstpaymnetmodal" id="divpay_method">
+                        <label>Payment Method<span class="glyphicon glyphicon-remove-circle editPaymentModel" style="color:#286090"></span></label>
+                        <input type="text" id="payment_method" name="payment_method" class="form-control" disabled>
+                        <!--   <select id="pa_type" name="pa_type" class="form-control">
+                             <option>Select Payment Method</option>
+                             <option value="Dialog Ez-Cash">Dialog Ez-Cash</option>
+                             <option value="Mobitel M-Cash">Mobitel M-Cash</option>
+                             <option value="Direct Debit">Direct Debit</option>
+                             <option value="Standing Order">Standing Order</option>
+
+                           </select>-->
+
+                        <div class="help-block"></div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Status</label>
+                        <input type="text" id="status" name="status" value="success" class="form-control" disabled>
+
+                        <div class="help-block"></div>
+                      </div>
+
+                      <input type="hidden" id="sttoken" name="sttoken">
+
+                    </div>
+
+                    <div class="row">
+                      <div id="alertSt">
+                      </div>
+                    </div>
+
+                    <%- partial('../layout/common/loader.ejs') %>
+                  </div>
+                </div>
+                <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+
+              </form>
+            </div>
+            <div id="responseText" style="float:center;"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="upadte_pkg">Update Package</button>
+              <button type="button" class="btn btn-secondary" id="paycancel" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+  <% block('localScripts', '<script src="../js/fontend/student.js"></script>') %>
+
+

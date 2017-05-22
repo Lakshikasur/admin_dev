@@ -1,0 +1,78 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+
+
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      All Active Questions(<%= section[0].name %>)
+    </h1>
+    <p>
+      <a class="btn btn-success" href="addquizmeta?auth=<%= auth %>">Add Question</a>
+    </p>
+    <div class="form-group col-md-4">
+      <label>Module</label>
+      <select id="sel_module" name="sel_module" class="form-control">
+        <option value="">Select Module</option>
+        <% for(var i = 0; i < modl_data.length; i++) { %>
+        <option value=<%= modl_data[i].module_id %>><%= modl_data[i].name %></option>
+        <% } %>
+      </select>
+      <div class="help-block divhide"></div>
+
+    </div>
+    <div class="form-group col-md-4">
+      <label>Unit</label>
+      <select id="sel_unit" name="sel_unit" class="form-control">
+        <option value="">Select Unit</option>
+      </select>
+      <div class="help-block divhide"></div>
+    </div>
+
+    <div class="col-md-12 formpackage">
+
+      <div class="row resource_view col-md-12">
+        <table id="packagetable" class="table table-bordered table-striped">
+          <thead>
+          <th>Question</th>
+          <th>Question Type</th>
+          <th>Description</th>
+          <th>Subject</th>
+          <th>Module</th>
+          <th>Unit</th>
+          <th>Grade</th>
+          <th>Curriculum</th>
+          <th>Edit/Delete</th>
+          </thead>
+          <tbody id="qsmry_table">
+          </tbody>
+        </table>
+        <div class="col-md-8 col-md-offset-4">
+          <ul class="sync-pagination pagination-sm"></ul>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Question Details</h4>
+              </div>
+              <div class="modal-body" id="quest_detail">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+  </div>
+
+
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+<% block('localScripts', '<script src="/js/fontend/quest_lib.js"></script>') %>

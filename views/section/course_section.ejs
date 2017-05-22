@@ -1,0 +1,83 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <ul class="breadcrumb"><li><a href="/dashboard?auth=<%= auth %>">Dashboard</a></li>
+      <li><a href="/section/init?auth=<%= auth %>">Section</a></li>
+    </ul>
+    <h1 style="margin-top: 0;">
+      Sections
+      <small>Insert Section</small>
+
+
+    </h1>
+
+    <div class="col-md-8 col-md-offset-2 formpackage">
+      <div class="row">
+        <form name="createsection" id="createsection">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Section Name</label>
+              <input type="text" id="sec_name" name="sec_name" class="form-control" placeholder="Enter Section Name Here..">
+              </select>
+
+              <div class="help-block"></div>
+            </div>
+
+
+            <div class="form-group">
+              <label>Curriculum Type</label>
+              <select id="c_type" name="c_type" class="js-example-basic-multiple form-control" multiple="multiple">
+                <option value="">Select Curriculum</option>
+                <% for(var i = 0; i < curriculum.length; i++) { %>
+                <option value=<%= curriculum[i].id %>><%= curriculum[i].name %></option>
+                <% } %>
+              </select>
+
+
+
+
+              <div class="help-block"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Grade</label>
+              <select id="g_type" name="g_type" class="js-example-basic-multiple form-control" multiple="multiple">
+                <option value="">Select Grade</option>
+                <% for(var i = 0; i < grade.length; i++) { %>
+                <option value=<%= grade[i].id %>><%= grade[i].grade %></option>
+                <% } %>
+              </select>
+
+              <div class="help-block"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Subject</label>
+              <select class="form-control" id="s_subject" name="s_subject">
+                <option value="">Select Subject</option>
+                <% for(var i = 0; i < subjects.length; i++) { %>
+                <option value=<%= subjects[i].id %>><%= subjects[i].name %></option>
+                <% } %>
+              </select>
+              <div class="help-block"></div>
+            </div>
+
+
+
+            <div id="psucsees_msg">
+            </div>
+            <button type="button" id="btncreatesection" class="btn btn-primary">Create Section</button>
+          </div>
+          <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+        </form>
+        <%- partial('../layout/common/loader.ejs') %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+
+<% block('localScripts', '<script src="../js/fontend/create_section.js"></script>') %>

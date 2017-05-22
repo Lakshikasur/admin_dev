@@ -1,0 +1,42 @@
+{
+  "name": "jquery-time-duration-picker",
+  "version": "2.1.2",
+  "description": "jQuery-ui widget for choosing time duration",
+  "main": "src/jquery-time-duration-picker.js",
+  "authors": [
+    "Nikolay Digaev <ffs.cmp@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "date",
+    "time",
+    "duration",
+    "picker",
+    "jquery"
+  ],
+  "homepage": "https://github.com/digaev/jquery-time-duration-picker",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">=2.1.4",
+    "jquery-ui": ">=1.11.4"
+  },
+  "devDependencies": {
+    "qunit": "^2.0.1"
+  },
+  "_release": "2.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.1.2",
+    "commit": "9f5f1fba78a28bd3188edb447a9e3c9642da8383"
+  },
+  "_source": "https://github.com/digaev/jquery-time-duration-picker.git",
+  "_target": "^2.1.2",
+  "_originalSource": "jquery-time-duration-picker",
+  "_direct": true
+}

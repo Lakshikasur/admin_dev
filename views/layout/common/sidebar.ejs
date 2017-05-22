@@ -1,0 +1,96 @@
+<div class="nav-side-menu">
+  <div class="brand">Tutor Wizard</div>
+  <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  <div class="menu-list">
+    <ul id="menu-content" class="menu-content collapse out">
+      <li class="collapsed">
+        <a href="/dashboard?auth=<%= auth %>">
+          <i class="fa fa-dashboard fa-lg"></i> Dashboard
+        </a>
+      </li>
+      <% if(role == 1){ %>
+
+      <li class="collapsed ">
+        <a href="/package/init?auth=<%= auth %>">
+          <i class="fa fa-book fa-lg"></i> Package
+        </a>
+      </li>
+      <li class="collapsed ">
+        <a href="/assessment/init?auth=<%= auth %>">
+          <i class="fa fa-pencil-square fa-lg"></i> Question Confirm
+        </a>
+      </li>
+
+      <li class="collapsed"><a href="/initResourceConfirm?auth=<%= auth %>">
+          <i class="fa fa-file-video-o fa-lg"></i> Resource Confirm
+        </a>
+      </li>
+      <li class="collapsed"><a href="/resource/allActiveInit?auth=<%= auth %>">
+          <i class="fa fa-file-video-o fa-lg"></i> Active Resources
+        </a>
+      </li>
+
+      <li class="collapsed"><a href="/section/init?auth=<%= auth %>"> <i
+            class="fa fa-sitemap fa-lg"></i> Section</a></li>
+
+      <li class="collapsed"><a href="/section/loadAddPackageSec?auth=<%= auth %>"> <i
+            class="fa fa-tasks fa-lg"></i> Package Section</a></li>
+
+      <li class="collapsed"><a href="/resource/tutorChallengeActive?auth=<%= auth %>"> <i
+            class="fa fa-tasks fa-lg"></i>Tutor Challenge</a></li>
+
+      <li class="collapsed"><a href="/prize/prize_summery?auth=<%= auth %>"> <i
+            class="fa fa-tasks fa-lg"></i>Prize Configuration</a></li>
+
+      <li class="collapsed"><a href="/abuse/abuse_summery?auth=<%= auth %>"> <i
+            class="fa fa-tasks fa-lg"></i>Report Abuse</a></li>
+
+      <% } %>
+
+
+
+
+      <% if(role == 3){ %>
+      <li class="collapsed">
+        <a href="/module/init?auth=<%= auth %>">
+          <i class="fa fa-folder fa-lg"></i> Module
+        </a>
+      </li>
+      <li class="collapsed ">
+        <a href="/unit/init?auth=<%= auth %>">
+          <i class="fa fa-archive fa-lg"></i> Unit
+        </a>
+      </li>
+      <li class="collapsed ">
+        <a href="/unit/faq/init?auth=<%= auth %>">
+          <i class="fa fa-archive fa-lg"></i> Unit(FAQ)
+        </a>
+      </li>
+      <li class="collapsed ">
+        <a href="/unit/glossary/init?auth=<%= auth %>">
+          <i class="fa fa-archive fa-lg"></i> Unit Glossary
+        </a>
+      </li>
+      <li class="collapsed ">
+        <a href="/resource/init?auth=<%= auth %>">
+          <i class="fa fa-video-camera fa-lg"></i> Resource
+        </a>
+      </li>
+      <li class="collapsed ">
+        <a href="/assessment/quest_smry?auth=<%= auth %>">
+          <i class="fa fa-pencil-square fa-lg"></i> Question
+        </a>
+      </li>
+
+
+      <li class="collapsed ">
+        <a href="/resource/tutorChallenge/init?auth=<%= auth %>">
+          <i class="fa fa-pencil-square fa-lg"></i> Tutor challenge
+        </a>
+      </li>
+
+
+      <% } %>
+    </ul>
+  </div>
+</div>

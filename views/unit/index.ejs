@@ -1,0 +1,172 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view" ng-controller="unitEditFormController">
+    <h1 style="margin-top: 0;">
+      Units
+    </h1>
+    <p>
+      <a class="btn btn-success" href="/unit/create?auth=<%= auth %>">Create Units</a>
+    </p>
+    <div class="col-md-12 formpackage">
+      <% if(msg){ %>
+      <table id="packagetable" class="table table-bordered table-striped">
+
+        <thead>
+        <th>Unit Name</th>
+        <th>Module Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
+        <% unit.forEach(function(unit){ %>
+        <tr>
+
+          <td data-value="<%= unit.unitID %>" class="hide"><%= unit.unitID %></td>
+          <td data-value="<%= unit.unit %>"><%= unit.unit %></td>
+          <td data-value="<%= unit.id %>"><%= unit.module %></td>
+          <td>
+            <p data-placement="top" data-toggle="tooltip" title="Edit">
+              <button class="btn btn-primary btn-xs uuedit" style="margin-top: 1px;" data-title="Edit"
+                      data-toggle="modal" id="<%= unit.unitID %>"
+                      name="<%= unit.unitID %>" data-target="#edit" data-ng-click="getUnitData($event)"><span
+                  class="glyphicon glyphicon-pencil"></span></button>
+            </p>
+          </td>
+          <td>
+            <p data-placement="top" data-toggle="tooltip" title="Delete">
+              <button class="btn btn-danger btn-xs uudelete" style="margin-top: 1px;" data-title="Edit"
+                      data-toggle="modal" id="<%= unit.unitID %>"
+                      name="<%= unit.unitID %>" data-target="#delete"><span
+                  class="glyphicon glyphicon-trash"></span></button>
+            </p>
+          </td>
+
+        </tr>
+
+        <% }); %>
+        </tbody>
+
+      </table>
+
+
+
+      <% if (pageCount > 1) { %>
+      <ul class="sync-pagination pagination-sm pagination">
+        <% if (currentPage > 1) { %>
+        <li class="page-item"><a href="/unit/init?auth=<%= auth %>&page=1" class="page-link">First</a></li>
+        <% } %>
+        <% var i = 1;
+          if (currentPage > 5) {
+            i = +currentPage - 4;
+          } %>
+        <% if (i !== 1) { %>
+        <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+        <% } %>
+        <% for (i; i<=pageCount; i++) { %>
+        <% if (currentPage == i) { %>
+        <li class="page-item active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
+        <% } else { %>
+        <li class="page-item"><a href="/unit/init?auth=<%= auth %>&page=<%= i %>" class="page-link"><%= i %></a></li>
+        <% } %>
+        <% if (i == (+currentPage + 4)) { %>
+        <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+        <% break; } %>
+        <% } %>
+        <% if (currentPage != pageCount) { %>
+        <li class="page-item"><a href="/unit/init?auth=<%= auth %>&page=<%= pageCount %>" class="page-link">Last</a></li>
+        <% } %>
+      </ul>
+      <% } %>
+
+      <% } %>
+      <% if(!msg){ %>
+      <div class="message col-md-5 col-md-offset-2">
+        <h4>No current Units assign to your account create new</h4>
+      </div>
+      <% } %>
+    </div>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         id="unitEditModel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Edit Unit</h4>
+          </div>
+          <div class="modal-body col-md-12">
+            <form name="editUnit" id="editUnit">
+              <div class="form-group col-md-12">
+                <label>Unit Name</label>
+                <input type="text" id="u_name" name="u_name" class="form-control" placeholder="Enter Unit Name Here..">
+                </select>
+                <div class="help-block"></div>
+              </div>
+            <!--  <div class="form-group col-md-12">
+                <ul class="nav nav-tabs" id="product-table">
+                  <li><a href="#1" data-toggle="tab">Unit Description</a></li>
+                  <li><a href="#2" data-toggle="tab">Unit Faq</a></li>
+                  <li><a href="#3" data-toggle="tab">Unit Glossery</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane" id="1">
+                    <div class="form-group col-md-12">
+                      <label>Unit Description</label>
+                      <div text-angular="text-angular" name="htmlcontentdes" ng-model="htmlcontentdes"
+                           ta-disabled='disabled'></div>
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="2">
+                    <div class="form-group col-md-12">
+                      <label>Unit Faq</label>
+                      <div text-angular="text-angular" name="htmlcontentfq" ng-model="htmlcontentfq"
+                           ta-disabled='disabled'></div>
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="3">
+                    <div class="form-group col-md-12">
+                      <label>Unit Glossary</label>
+                      <div text-angular="text-angular" name="htmlcontengl" ng-model="htmlcontentgl"
+                           ta-disabled='disabled'></div>
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>-->
+
+              <div class="form-group col-md-12">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#home">Unit Description</a></li>
+                </ul>
+
+                <div class="tab-content">
+                  <div id="home" class="tab-pane fade in active">
+                      <div text-angular="text-angular" name="htmlcontentdes" ng-model="htmlcontentdes"
+                           ta-disabled='disabled'></div>
+                      <div class="help-block"></div>
+                  </div>
+                </div>
+                </div>
+
+              <input type="hidden" id="unit_id" name="unit_id">
+              <div class="col-md-12 hide" id="unitDesData" ng-model="description" ng-bind-html="htmlcontentdes"></div>
+              <input type='hidden' name='_csrf' id="_csrf" value='<%= _csrf %>'>
+            </form>
+            <%- partial('../layout/common/loader.ejs') %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="ueditconfirm">Update Unit</button>
+            <button type="button" class="btn btn-secondary" id="ueditcancel" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+<% block('localScripts', '<script src="../js/fontend/edit_unit.js"></script>') %>
+
+

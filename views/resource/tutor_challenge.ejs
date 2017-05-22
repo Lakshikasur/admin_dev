@@ -1,0 +1,225 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <ul class="breadcrumb">
+      <li><a href="/dashboard?auth=<%= auth %>">Dashboard</a></li>
+      <li><a href="/resource/tutorChallenge/init?auth=<%= auth %>">Tutor Challenge</a></li>
+    </ul>
+    <h1 style="margin-top: 0;">
+      Tutor
+      <small>challenge (<%= section[0].name %>)</small>
+
+    </h1>
+
+
+    <div class="col-md-10 col-md-offset-1 well formpackage" ng-controller="tutorChallengeController">
+
+
+      <div class="col-md-6 col-md-offset-3">
+        <h2 style="margin-top: 0;">
+        </h2>
+      </div>
+      <form name="createTutorChallange" id="createTutorChallange" enctype="multipart/form-data">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Module</label>
+              <select id="m_type" name="m_type" class="form-control">
+                <option value="">Select Module</option>
+                <% for(var i = 0; i < module.length; i++) { %>
+                <option value=<%= module[i].module_id %>><%= module[i].name %></option>
+                <% } %>
+              </select>
+              <div class="help-block"></div>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Unit</label>
+              <select id="mu_type" name="mu_type" class="form-control">
+                <option value="">Select Unit</option>
+              </select>
+              <div class="help-block"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class='form-group col-md-6'>
+              <label>Limit Of Student</label>
+              <select id="st_limit" name="st_limit" class="form-control">
+                <option value="">Select Limit</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+              </select>
+            </div>
+            <div class='form-group col-md-6'>
+              <label>Word Count</label>
+              <select id="w_count" name="w_count" class="form-control">
+                <option value="">Select Limit</option>
+                <option value="250">200</option>
+                <option value="500">500</option>
+                <option value="800">800</option>
+              </select>
+            </div>
+          </div>
+
+<!--
+          <div class="row">
+              <div class='form-group col-md-6'>
+                <label>Start Date</label>
+                <div class='input-group date' id='startdatepicker'>
+                  <input type='text' id="st_date" name="st_date" class="form-control"/>
+                  <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+              <div class='form-group col-md-6'>
+                <label>End Date</label>
+                <div class='input-group date' id='enddatepicker'>
+                  <input type='text' id="end_date" name="end_date" class="form-control"/>
+                  <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+
+-->
+
+
+          <div class="row">
+
+
+            <div class="form-group col-md-12">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Challenge Question</a></li>
+                <li><a data-toggle="tab" href="#menu1">Challenge Reference</a></li>
+                <li><a data-toggle="tab" href="#menu2">Challenge Answer</a></li>
+              </ul>
+
+              <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                  <div text-angular ng-model="data.challengeQuestion" ng-cloak></div>
+                  <div class="help-block"></div>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                  <div class="col-md-12" id="multiQuesAnswers">
+                    <div class="form-group tutorChallengeRef">
+                      <label for="question" class="answers"><i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                        Upload Reference</label>
+                      <div class="col-md-12" id="exampleContainer">
+                        <div id="uploaderContainer">
+                        </div>
+                        <div class="row">
+                          <div class="col-md-7" id="filelist">
+                            <form id="tutor_resource">
+                              <h4>Upload files</h4>
+                              <div class="row">
+
+
+                                <div class="form-group col-md-6">
+                                  <label>Resourse Name</label>
+                                  <input type="text" id="tu_res_name" name="tu_res_name" class="form-control"
+                                         placeholder="Enter Resourse Name Here..">
+
+                                  <div class="help-block"></div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                  <label>Recourse Type</label>
+                                  <select id="r_type" name="r_type" class="form-control">
+                                    <option value="">Select Resource Type</option>
+                                    <% for(var i = 0; i < resource.length; i++) { %>
+                                    <option value=<%= resource[i].id %>><%= resource[i].name %></option>
+                                    <% } %>
+
+                                  </select>
+
+                                  <div class="help-block"></div>
+                                </div>
+
+
+                              </div>
+                            </form>
+                            <div class="form-group">
+                              <div class="fileUploadSec">
+                                <label>Select File: <input type="file" name="UploadFile" id="txtUploadFile"
+                                                           class="homereportupload"/></label>
+                                <div class="progress">
+                                  <div id='_progress' class="progress-bar progress-bar-striped active">
+                                  </div>
+
+                                </div>
+                              </div>
+                              <div class="fileUploadUrlSec hide">
+
+                                <div class="form-group">
+                                  <label>Enter Video Url: </label>
+                                  <textarea name="url_link" class="form-control" id="url_link"
+                                            placeholder="Enter video url here..."></textarea>
+                                </div>
+
+                              </div>
+                              <div class="col-md-12 hide" id="resourseSummeryData"
+                                   ng-bind-html="data.resourseSummery"></div>
+                              <div id="psucsees_msg">
+                              </div>
+                              <button type="button" id="uploadresources" class="btn btn-primary">Upload</button>
+                            </div>
+                          </div>
+                          <div class="js-upload-finished col-md-5">
+                            <h4>Processed files</h4>
+                            <div class="list-group" id="resoursePrview">
+                              <ul class="show_inputs">
+                              </ul>
+                            </div>
+                            <div class="list-group hide" id="resoursePrview_hide">
+                            </div>
+                            <div class="list-group hide" id="resourseType_hide">
+                            </div>
+                            <div class="list-group hide" id="resourseName_hide">
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                  <div text-angular ng-model="data.challengeAnswer" ng-cloak></div>
+                  <div class="help-block"></div>
+                </div>
+              </div>
+
+
+              <div id="psucsees_msg">
+              </div>
+              <div class="col-md-12 hide" id="challengeQuestion" ng-bind-html="data.challengeQuestion"></div>
+              <div class="col-md-12 hide" id="challengeAnswer" ng-bind-html="data.challengeAnswer"></div>
+              <button type="button" id="tutor_challange_add" class="btn btn-primary">Create Challenge</button>
+            </div>
+          </div>
+
+        </div>
+
+
+        <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+
+      </form>
+
+
+      <%- partial('../layout/common/loader.ejs') %>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+<% block('localScripts', '<script src="../js/fontend/tutor_challenge.js"></script>') %>

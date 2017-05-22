@@ -1,0 +1,193 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+  <!--  <h1 style="margin-top: 0;">
+      Multiple Choices
+      <small>make question</small>
+    </h1>-->
+    <ul class="breadcrumb">
+      <li class="active"><%= sec_type+ ' < ' +m_type+ ' < ' + mu_type+ ' < '+que_st%></li>
+    </ul>
+    <div class="margin-bottom-small">
+      <a href="/assessment/addQuestionInit?auth=<%= auth %>&m=<%=m_type+'&u='+ mu_type %>" class="lrn-question-button btn btn-default">Question Type</a>
+    </div>
+    <div class="lrn lrn-qe">
+      <div class="lrn-qe-ui lrn-qe-bp-xs lrn-qe-bp-xsm lrn-qe-bp-sm lrn-qe-bp-md lrn-qe-bp-lg"
+           data-lrn-qe-app-wrapper="" style="position: relative;">
+        <div class="lrn-qe-viewstack" data-lrn-qe-viewstack="">
+          <div class="lrn-qe-toolbar" data-lrn-qe-toolbar="">
+            <div class="lrn-qe-toolbar-left lrn-qe-sect-heading lrn-qe-ellipses"><span
+                data-lrn-qe-layout-change-question="" class="lrn-qe-block lrn-qe-float-left"
+                style="display: none;"></span>
+              <div class="lrn-qe-block lrn-qe-float-left" data-lrn-qe-layout-change-question="rendered">
+                <button type="button" data-lrn-qe-change-question=""
+                        class="lrn-qe-btn lrn-qe-btn-change lrn-qe-margin-right-sm" title=""
+                        data-lrn-qe-selector="tooltipped" tabindex="0" data-lrn-qe-describedby="lrn_qe_tooltip_302_0">
+                  <span class="glyphicon glyphicon-th-list"></span></button>
+              </div>
+              <span data-lrn-qe-layout-widget-title="" class="lrn-qe-h3 lrn-qe-inline lrn-question-type-name"
+                    style="display: none;"></span>
+              <div class="lrn-qe-h3 lrn-qe-inline lrn-question-type-name" data-lrn-qe-layout-widget-title="rendered">
+                View & Answer – Standard
+              </div>
+            </div>
+            <div class="lrn-qe-toolbar-right">
+              <ul class="lrn-qe-toolbar-controls">
+                <li>
+                    <button type="button" class="lrn-question-button btn btn-default questionEdit">Edit</button>
+                    <button type="button" class="lrn-question-button btn btn-default questionPrview">Preview</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+       <!-- <div class="col-md-12">
+          <form name="searchForm" novalidate="" role="form">
+              <div class="col-md-12 compose_question">
+                  <div id="questions" class="questions">
+                    <div class="form-group">
+                      <label for="question"><i class="fa fa-question-circle" aria-hidden="true"></i> Question
+                        Description</label>
+                        <textarea class="form-control" id="question" ng-model="data.questiondes" required></textarea>
+
+                    </div>
+                    <div class="form-group">
+                      <label for="question"><i class="fa fa-question-circle" aria-hidden="true"></i> Question</label>
+                      <div text-angular ng-model="data.htmlVariable"></div>
+                    </div>
+                  </div>
+                <hr>
+                  <div class="row">
+                    <div id="answers" class="answers col-md-6" >
+                      <div class="form-group">
+                        <label for="question" class="answers"><i class="fa fa-th-list" aria-hidden="true"></i> Answers</label>
+                      </div>
+
+
+                      <div class="input-group">
+                        <div ng-repeat="choice in choices" class="input-group">
+                          <input type="text" class="form-control" id="answer" placeholder="Answer" ng-model="choice.answer" required>
+                          <div class="input-group-addon delete_item" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                      <button class="btn btn-primary add_answer" ng-click="addNewChoice()"><i class="fa fa-plus" aria-hidden="true"></i>Add fields</button>
+
+
+                    </div>
+                    <div id="canswers" class="canswers col-md-6" >
+                      <div class="form-group">
+                        <label for="question" class="answers"><i class="fa fa-th-list" aria-hidden="true"></i>  Correct Answers</label>
+                      </div>
+
+                      <div class="input-group">
+                        <ul class="checkbox"  ng-repeat="choice in choices">
+                          <input type="checkbox" name="crust" id="{{choice.id}}" ng-model="choice.c_answer" ng-true-value="1" ng-false-value="0"  ng-click="changeAnswer(choice.id)"/><label for="crust1">{{choice.answer}}</label>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-lg-offset-10">
+                    <button type="submit" class="btn btn-primary confirm_insertanswer" ng-click="saversQuestionData()">Add Question</button>
+                  </div>
+              </div>
+                <div class="col-md-12 compose_preview hide">
+              <p>{{data.questiondes}}</p>
+              <div class="col-md-12" ng-bind-html="data.htmlVariable"></div>
+              <p>{{data.question}}</p>
+              <input type="hidden" id="qs_id" value=<%= que_st %> >
+              <div>{{choices}}</div>
+
+            </div>
+            <hr>
+
+
+
+              </form>
+            </div>-->
+
+        <div class="col-md-12" ng-controller="addWritingSpokeAnswer" ng-cloak>
+          <form name="searchForm" role="form">
+            <div class="col-md-12 compose_question">
+              <div id="questions" class="questions">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a class="fa fa-question-circle" data-toggle="tab" href="#question"> Question</a></li>
+                  <li ><a class="fa fa-question-circle"data-toggle="tab" href="#questiondes"> Question Description</a></li>
+                  <li ><a class="fa fa-question-circle"data-toggle="tab" href="#answer"> Question Answer</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div id="question" class="tab-pane fade in active">
+                    <div text-angular ng-model="data.htmlVariable"></div>
+                    <div class="help-block"></div>
+                  </div>
+                  <div id="questiondes" class="tab-pane fade">
+                    <div text-angular ng-model="data.questiondes"></div>
+                    <div class="help-block"></div>
+                  </div>
+                  <div id="answer" class="tab-pane fade">
+                    <div class="col-md-12" id="multiQuesAnswers">
+                      <div id="answers"  class="multipleChoice answers col-md-7" >
+                        <div class="form-group">
+                          <label for="question" class="answers"><i class="fa fa-th-list" aria-hidden="true"></i> All Answers</label>
+                        </div>
+                        <div class="input-group col-md-7">
+                          <div ng-repeat="choice in choices" class="input-group multipleChoiceSingle">
+                            <input type="text" class="form-control" id="answer" placeholder="Answer" ng-model="choice.answer" required>
+                            <div class="input-group-addon delete_item" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+                          </div>
+                        </div>
+                        <button class="btn btn-primary add_answer" ng-click="addNewChoice()"><i class="fa fa-plus" aria-hidden="true"></i>Add fields</button>
+                      </div>
+                      <div id="canswers" class="multipleChoice canswers col-md-5" >
+                        <div class="form-group">
+                          <label for="question" class="answers"><i class="fa fa-th-list" aria-hidden="true"></i>  Correct Answers</label>
+                        </div>
+
+
+                        <div class="input-group">
+                          <ul class="checkbox multipleChoiceSingleCheack"  ng-repeat="choice in choices">
+                            <input type="checkbox" name="crust" id="{{choice.id}}" ng-model="choice.c_answer" ng-true-value="1" ng-false-value="0"  ng-click="changeAnswer(choice.id)"/><label for="crust1">{{choice.answer}}</label>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-2 col-lg-offset-10">
+                <button type="submit" class="btn btn-primary confirm_insertanswer" ng-click="saversQuestionData()">Save Question</button>
+              </div>
+            </div>
+
+
+            <div class="col-md-12 compose_preview hide">
+              <p>Question</p>
+              <div class="col-md-12" id="multiQuestion" ng-bind-html="data.htmlVariable"></div>
+              <p>Question Description</p>
+              <div class="col-md-12" id="multiQuestionDes" ng-bind-html="data.questiondes"></div>
+              <input type="hidden" id="qs_id" value=<%= que_st %> >
+              <div>{{data}}</div>
+              <div>{{choices}}</div>
+
+            </div>
+
+          </form>
+        </div>
+
+        </div>
+
+
+      </div>
+    <input type='hidden' id='_csrf' name='_csrf' value='<%= _csrf %>'>
+
+
+    </div>
+  </div>
+</div>
+</div>
+
+<% block('localScripts', '<script src="../js/fontend/written_spoken.js"></script>') %>
+

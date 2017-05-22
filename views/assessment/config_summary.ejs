@@ -1,0 +1,172 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Quiz Configuration & Confirm
+    </h1>
+    <div class="form-group col-md-12">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#confirm">Question Confirm</a></li>
+        <li ><a data-toggle="tab" href="#configuration">Quiz Configuration</a></li>
+      </ul>
+      <div class="tab-content" >
+        <div id="confirm" class="tab-pane fade in active">
+
+          <button class="btn btn-large btn-primary confirmAll" data-toggle="confirmation"> Confirm All Question</button>
+
+          <table id="qconfirmtable" class="table table-bordered table-striped">
+
+            <thead>
+            <th>Curriculum</th>
+            <th>Module</th>
+            <th>Unit</th>
+            <th>Subject</th>
+            <th>Style</th>
+            <th>View</th>
+            <th>Confirm</th>
+            </thead>
+
+            <tbody id="quiz_confirm_table_data">
+
+
+
+            </tbody>
+
+
+          </table>
+
+          <div class="col-md-8 col-md-offset-4">
+            <ul class="sync-pagination pagination-sm"></ul>
+          </div>
+
+
+        </div>
+        <div id="configuration" class="tab-pane fade">
+          <p>
+            <a class="btn btn-success" href="/assessment/create?auth=<%= auth %>">Create Quiz Config</a>
+          </p>
+          <div class="row">
+            <div class="form-group col-md-4" id="qcurriculum">
+              <label>Section</label>
+
+              <select id="sel_qsection" name="sel_qsection" class="form-control">
+                <option value="">Select Section</option>
+                <% for(var i = 0; i < section.length; i++) { %>
+                <option value=<%= section[i].id %>><%= section[i].name %></option>
+                <% } %>
+              </select>
+              <div class="help-block divhide" id="error_qcurriculum"></div>
+            </div>
+
+
+
+
+          </div>
+          <div class="form-group col-md-12 well formpackage" id="div_qconfigtable">
+            <table id="qconfigtable" class="table table-bordered table-striped">
+              <thead>
+              <th>Test Type</th>
+              <th>subject</th>
+              <th>Module</th>
+              <th>No of questions</th>
+              <th>Test Duration</th>
+              <th>Time Bonus</th>
+              <th>Created Date</th>
+              <th>Created By</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              </thead>
+              <tbody>
+
+              </tbody>
+
+            </table>
+            <input type='hidden' id='_csrf' name='_csrf' value='<%= _csrf %>'>
+          </div>
+
+        </div>
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="quizEditModel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Edit Quiz</h4>
+              </div>
+              <div class="modal-body col-md-12">
+                <form name="editQuiz">
+                  <div class="col-md-12">
+                      <div class="row">
+                        <form name="quizconfig">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Test Type</label>
+                              <select id="qiz_type" name="qiz_type" class="form-control" disabled>
+                              </select>
+                              <div class="help-block" id="error_quiz_type"></div>
+                            </div>
+                            <div class="form-group divhide" id="qsubject">
+                              <label>Subject</label>
+                              <select id="s_type" name="s_type" class="form-control" disabled>
+                              </select>
+                              <div class="help-block divhide" id="error_subject"></div>
+                            </div>
+                            <div class="form-group divhide" id="qmodule">
+                              <label>Module</label>
+                              <select id="m_type" name="m_type" class="form-control" disabled>
+                              </select>
+                              <div class="help-block" id="error_module"></div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-4 editquizmodal" id="divq_amount">
+                                <label>Number Of Question<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                                <select id="q_amount" name="q_amount" class="form-control" disabled>
+                                </select>
+                                <div class="help-block" id="error_no_of_q"></div>
+                              </div>
+                              <div class="form-group col-md-4 editquizmodal" id="divs_time">
+                                <label>Schedule Time<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                                <select id="s_time" name="s_time" class="form-control" disabled>
+                                </select>
+                              </div>
+                              <div class="form-group col-md-4 editquizmodal" id="divt_bonus">
+                                <label>Time Bonus<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                                <select id="t_bonus" name="t_bonus" class="form-control" disabled>
+                                </select>
+                              </div>
+
+                            </div>
+                            <div id="psucsees_msg">
+                            </div>
+                          </div>
+                          <input type='hidden' id='_csrf' name='_csrf' value='<%= _csrf %>'>
+                        </form>
+                      </div>
+                    </div>
+                    <div id="psucsees_msg">
+                    </div>
+                    <input type="hidden" id="curr_id" name="curr_id">
+                    <input type="hidden" id="sub_id" name="sub_id">
+                    <input type="hidden" id="module_id" name="module_id">
+                    <input type="hidden" id="test_type" name="test_type">
+                    <input type="hidden" id="sec_type" name="sec_type">
+
+                </form>
+                <%- partial('../layout/common/loader.ejs') %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="updatequiz" >Update</button>
+                <button type="button" class="btn btn-secondary" id="quesViewCancel" data-dismiss="modal">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+<% block('localScripts', '<script src="../js/fontend/config_summary.js"></script>') %>

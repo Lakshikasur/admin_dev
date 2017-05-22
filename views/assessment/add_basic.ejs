@@ -1,0 +1,49 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Question Making
+      <small>add  question</small>
+    </h1>
+    <div class="col-md-8 col-md-offset-2 well formpackage">
+      <div class="row">
+        <form name="addQuestionBasic">
+          <div class="col-md-12">
+            <div class="form-group" id="qmodule">
+              <label>Module</label>
+              <select id="m_type" name="m_type" class="form-control">
+                <option value="">Select Module</option>
+                <% for(var i = 0; i < module.length; i++) { %>
+                <option value=<%= module[i].module_id %>><%= module[i].name %></option>
+                <% } %>
+              </select>
+              <div class="help-block"></div>
+            </div>
+
+
+            <div class="form-group" id="qunit">
+              <label>Unit</label>
+              <select id="mu_type" name="mu_type" class="form-control">
+                <option value="">Select Unit</option>
+              </select>
+              <div class="help-block"></div>
+            </div>
+
+            <div id="psucsees_msg">
+            </div>
+
+
+            <button type="button" id="addquizmetadata" class="btn btn-primary">Next</button>
+          </div>
+          <input type='hidden' id='_csrf' name='_csrf' value='<%= _csrf %>'>
+        </form>
+        <%- partial('../layout/common/loader.ejs') %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+<% block('localScripts', '<script src="../js/fontend/add_basic.js"></script>') %>

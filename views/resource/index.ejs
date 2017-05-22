@@ -1,0 +1,446 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view" ng-controller="resourceEditFormController">
+    <h1 style="margin-top: 0;">
+      Resources View(<%= section[0].name %>)
+    </h1>
+    <div class="form-group col-md-12">
+    <p>
+      <a class="btn btn-success" href="/resource/add?auth=<%= auth %>">Add New Resource</a>
+    </p>
+
+      </div>
+    <div class="form-group col-md-12">
+    <div class="row resource_view">
+
+      <div class="form-group col-md-6">
+        <label>Module</label>
+        <select  ng-model="selectedItem" ng-change="selectedItemChanged()" class="form-control">
+          <option value="">Select Module</option>
+          <% for(var i = 0; i < module.length; i++) { %>
+          <option value=<%= module[i].module_id %>><%= module[i].name %></option>
+          <% } %>
+        </select>
+        <div class="help-block divhide"></div>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Unit</label>
+        <select ng-model="selectedUnit" ng-options="u.unit_id as u.unit_name for u in units" ng-change="selectedUnitChanged()" class="form-control">
+          <option value="">Select Unit</option>
+        </select>
+        <div class="help-block divhide"></div>
+      </div>
+
+
+    </div>
+    </div>
+    <div class="form-group col-md-12">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#video">Video</a></li>
+        <li><a data-toggle="tab" href="#anim">Animation</a></li>
+        <li><a data-toggle="tab" href="#pres">Presentation</a></li>
+        <li><a data-toggle="tab" href="#ia">Interactive Activity</a></li>
+        <li><a data-toggle="tab" href="#rn">Revision Notes</a></li>
+        <li><a data-toggle="tab" href="#kn">Knowledge Nugget</a></li>
+        <li><a data-toggle="tab" href="#wos">Worksheets</a></li>
+      </ul>
+      <div class="tab-content" >
+        <div id="video" class="tab-pane fade in active">
+            <table id="r_video_table" class="table table-bordered table-striped">
+
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th class="hide">Delete</th>
+              </thead>
+              <tbody >
+
+              <tr ng-repeat="u in unitsData | orderBy:'+'"  ng-if="u.resource_type_id==1" ng-cloak>
+
+                <td data-value="{{u.resourceID}}" class="hide">{{u.resourceID}}</td>
+                <td data-value="{{u.resourceName}}">{{u.resourceName}}</td>
+                <td data-value="{{u.resourceTypeName}}">{{u.resourceTypeName }}</td>
+                <td data-value="{{u.h_type }}">{{ u.h_type}}</td>
+                <td data-value="{{ u.file_id }}"  class="hide">{{u.file_id }}</td>
+                <td data-value="{{u.resource_type_id }}"  class="hide">{{ u.resource_type_id}}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs urview" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-eye-open"></span></button>
+                  </p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs uredit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit" data-ng-click="getResourceData($event)"><span
+                        class="glyphicon glyphicon-pencil"></span></button>
+                  </p></td>
+                <td class="hide"><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-danger btn-xs upedit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-trash"></span></button>
+                  </p></td>
+              </tr>
+
+              </tbody>
+
+            </table>
+        </div>
+        <div id="anim" class="tab-pane fade">
+
+            <table id="r_anim_table" class="table table-bordered table-striped">
+
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th class="hide">Delete</th>
+              </thead>
+              <tbody>
+
+              <tr ng-repeat="u in unitsData | orderBy:'+'"  ng-if="u.resource_type_id==2">
+
+                <td data-value="{{u.resourceID}}" class="hide">{{u.resourceID}}</td>
+                <td data-value="{{u.resourceName}}">{{u.resourceName}}</td>
+                <td data-value="{{u.resourceTypeName}}">{{u.resourceTypeName }}</td>
+                <td data-value="{{u.h_type }}">{{ u.h_type}}</td>
+                <td data-value="{{ u.file_id }}"  class="hide">{{u.file_id }}</td>
+                <td data-value="{{u.resource_type_id }}"  class="hide">{{ u.resource_type_id}}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs urview" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-eye-open"></span></button>
+                  </p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs uredit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit" data-ng-click="getResourceData($event)"><span
+                        class="glyphicon glyphicon-pencil"></span></button>
+                  </p></td>
+                <td class="hide"><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-danger btn-xs upedit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-trash"></span></button>
+                  </p></td>
+              </tr>
+
+              </tbody>
+
+            </table>
+
+        </div>
+        <div id="pres" class="tab-pane fade">
+
+            <table id="r_pres_table" class="table table-bordered table-striped">
+
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th class="hide">Delete</th>
+              </thead>
+              <tbody>
+
+              <tr ng-repeat="u in unitsData | orderBy:'+'"  ng-if="u.resource_type_id==3">
+
+                <td data-value="{{u.resourceID}}" class="hide">{{u.resourceID}}</td>
+                <td data-value="{{u.resourceName}}">{{u.resourceName}}</td>
+                <td data-value="{{u.resourceTypeName}}">{{u.resourceTypeName }}</td>
+                <td data-value="{{u.h_type }}">{{ u.h_type}}</td>
+                <td data-value="{{ u.file_id }}"  class="hide">{{u.file_id }}</td>
+                <td data-value="{{u.resource_type_id }}"  class="hide">{{ u.resource_type_id}}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs urview" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-eye-open"></span></button>
+                  </p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs uredit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit" data-ng-click="getResourceData($event)"><span
+                        class="glyphicon glyphicon-pencil"></span></button>
+                  </p></td>
+                <td class="hide"><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-danger btn-xs upedit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-trash"></span></button>
+                  </p></td>
+              </tr>
+
+              </tbody>
+
+            </table>
+        </div>
+        <div id="ia" class="tab-pane fade">
+
+            <table id="r_ia_table" class="table table-bordered table-striped">
+
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th class="hide">Delete</th>
+              </thead>
+              <tbody>
+
+              <tr ng-repeat="u in unitsData | orderBy:'+'"  ng-if="u.resource_type_id==4">
+
+                <td data-value="{{u.resourceID}}" class="hide">{{u.resourceID}}</td>
+                <td data-value="{{u.resourceName}}">{{u.resourceName}}</td>
+                <td data-value="{{u.resourceTypeName}}">{{u.resourceTypeName }}</td>
+                <td data-value="{{u.h_type }}">{{ u.h_type}}</td>
+                <td data-value="{{ u.file_id }}"  class="hide">{{u.file_id }}</td>
+                <td data-value="{{u.resource_type_id }}"  class="hide">{{ u.resource_type_id}}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs urview" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-eye-open"></span></button>
+                  </p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs uredit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit" data-ng-click="getResourceData($event)"><span
+                        class="glyphicon glyphicon-pencil"></span></button>
+                  </p></td>
+                <td class="hide"><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-danger btn-xs upedit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-trash"></span></button>
+                  </p></td>
+              </tr>
+
+              </tbody>
+
+            </table>
+
+        </div>
+        <div id="rn" class="tab-pane fade">
+
+            <table id="r_kn_table" class="table table-bordered table-striped">
+
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th class="hide">Delete</th>
+              </thead>
+              <tbody>
+
+              <tr ng-repeat="u in unitsData | orderBy:'+'"  ng-if="u.resource_type_id==5">
+
+                <td data-value="{{u.resourceID}}" class="hide">{{u.resourceID}}</td>
+                <td data-value="{{u.resourceName}}">{{u.resourceName}}</td>
+                <td data-value="{{u.resourceTypeName}}">{{u.resourceTypeName }}</td>
+                <td data-value="{{u.h_type }}">{{ u.h_type}}</td>
+                <td data-value="{{ u.file_id }}"  class="hide">{{u.file_id }}</td>
+                <td data-value="{{u.resource_type_id }}"  class="hide">{{ u.resource_type_id}}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs urview" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-eye-open"></span></button>
+                  </p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs uredit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit" data-ng-click="getResourceData($event)"><span
+                        class="glyphicon glyphicon-pencil"></span></button>
+                  </p></td>
+                <td class="hide"><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-danger btn-xs upedit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-trash"></span></button>
+                  </p></td>
+              </tr>
+
+              </tbody>
+
+            </table>
+
+        </div>
+        <div id="kn" class="tab-pane fade">
+
+            <table id="r_rn_table" class="table table-bordered table-striped">
+
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th class="hide">Delete</th>
+              </thead>
+              <tbody>
+
+              <tr ng-repeat="u in unitsData | orderBy:'+'"  ng-if="u.resource_type_id==6">
+
+                <td data-value="{{u.resourceID}}" class="hide">{{u.resourceID}}</td>
+                <td data-value="{{u.resourceName}}">{{u.resourceName}}</td>
+                <td data-value="{{u.resourceTypeName}}">{{u.resourceTypeName }}</td>
+                <td data-value="{{u.h_type }}">{{ u.h_type}}</td>
+                <td data-value="{{ u.file_id }}"  class="hide">{{u.file_id }}</td>
+                <td data-value="{{u.resource_type_id }}"  class="hide">{{ u.resource_type_id}}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs urview" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-eye-open"></span></button>
+                  </p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs uredit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit" data-ng-click="getResourceData($event)"><span
+                        class="glyphicon glyphicon-pencil"></span></button>
+                  </p></td>
+                <td class="hide"><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-danger btn-xs upedit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-trash"></span></button>
+                  </p></td>
+              </tr>
+
+              </tbody>
+
+            </table>
+
+        </div>
+        <div id="wos" class="tab-pane fade">
+
+            <table id="r_wos_table" class="table table-bordered table-striped">
+
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th class="hide">Delete</th>
+              </thead>
+              <tbody>
+
+              <tr ng-repeat="u in unitsData | orderBy:'+'"  ng-if="u.resource_type_id==8">
+
+                <td data-value="{{u.resourceID}}" class="hide">{{u.resourceID}}</td>
+                <td data-value="{{u.resourceName}}">{{u.resourceName}}</td>
+                <td data-value="{{u.resourceTypeName}}">{{u.resourceTypeName }}</td>
+                <td data-value="{{u.h_type }}">{{ u.h_type}}</td>
+                <td data-value="{{ u.file_id }}"  class="hide">{{u.file_id }}</td>
+                <td data-value="{{u.resource_type_id }}"  class="hide">{{ u.resource_type_id}}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs urview" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-eye-open"></span></button>
+                  </p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-primary btn-xs uredit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit" data-ng-click="getResourceData($event)"><span
+                        class="glyphicon glyphicon-pencil"></span></button>
+                  </p></td>
+                <td class="hide"><p data-placement="top" data-toggle="tooltip" title="Edit">
+                    <button class="btn btn-danger btn-xs upedit" style="margin-top: 1px;" data-title="Edit" data-toggle="modal"
+                            name="{{ u.resourceID}}" data-target="#edit"><span
+                        class="glyphicon glyphicon-trash"></span></button>
+                  </p></td>
+              </tr>
+
+              </tbody>
+
+            </table>
+
+        </div>
+      </div>
+    </div>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="resourceEditModel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Edit Resource</h4>
+          </div>
+          <div class="modal-body col-md-12">
+            <form name="editResource">
+              <div class="col-md-12 formEditResource">
+                <div class="row">
+                  <form name="createsection" id="editResorce">
+                    <div class="col-md-12">
+                      <div class="row">
+
+                        <div class="form-group col-md-4 editresourcemodal" id="divrname">
+                          <label>Resourse Name<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                          <input type="text" id="r_name" name="r_name" class="form-control"
+                                 placeholder="Enter Resourse Name Here.." disabled>
+
+                          <div class="help-block"></div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                          <label>Recourse Type</label>
+                          <select id="r_type" name="r_type" class="form-control" disabled>
+                          </select>
+
+                          <div class="help-block"></div>
+                        </div>
+
+                        <div class="form-group  col-md-4 editresourcemodal" id="divstopic">
+                          <label>Sub-Topic</label>
+                          <select class="form-control" id="r_head" name="r_head" disabled>
+                            <option value="">Select Sub-Topic</option>
+                          </select>
+                          <div class="help-block"></div>
+                        </div>
+
+
+
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-md-12">
+                          <label>Summary <span ng-cloak>( maximum (Characters:160))</span></label>
+                          <div text-angular="text-angular" name="htmlcontentdes" ng-model="htmlcontentdes"
+                               ta-disabled='disabled' ta-max-text="160" ng-cloak></div>
+
+
+                          <div class="help-block"></div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="fileUploadUrlSec hide" >
+                          <div class="form-group editresourcemodal" id="divurl">
+                            <label>Update Video Url: <span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                            <textarea name="url_link" class="form-control" id="url_link" placeholder="Enter video url here..." disabled></textarea>
+                          </div>
+
+                        </div>
+                        <div id="psucsees_msg">
+                        </div>
+                      </div>
+                      <input type="hidden" id="resource_id" name="resource_id">
+                      <input type="hidden" id="file_id" name="file_id">
+                      <div class="col-md-12 hide" id="resourceDesData" ng-model="description" ng-bind-html="htmlcontentdes"></div>
+                      <input type='hidden' name='_csrf' ng-bind-html="_csrf" id="_csrf" value='<%= _csrf %>'>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="updateresource">Update Resource</button>
+            <button type="button" class="btn btn-secondary" id="seditcancel" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+
+<% block('localScripts', '<script src="../js/fontend/edit_resource.js"></script>') %>
+<% block('localScripts', '<script src="../js/fontend/resource_confirm.js"></script>') %>
+
+

@@ -1,0 +1,145 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Tutor Challenge View And Marking
+    </h1>
+    <p>
+      <a class="btn btn-success" href="/resource/addtutorChallenge?auth=<%= auth %>">Create Tutor Challenge</a>
+    </p>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" data-url="unit_challenge_table_body" href="#unit_challenge">Current Unit Challenge</a></li>
+      <li><a data-toggle="tab" data-url="marking_challenge_table_body" href="#marking_challenge">Mark Challenge</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="unit_challenge" class="tab-pane fade in active">
+        <div class="col-md-12 formpackage">
+          <table id="r_video_table" class="table table-bordered table-striped">
+            <thead>
+            <th>Unit Name</th>
+            <th>Student Limit</th>
+            <th>Word Count</th>
+            <th>Created At</th>
+            <th>View</th>
+            <th>Edit</th>
+            </thead>
+            <tbody class="tuch_table_body" id="unit_challenge_table_body">
+
+            </tbody>
+          </table>
+
+
+          <div class="col-md-8 col-md-offset-4">
+            <ul class="sync-pagination pagination-sm non_active_table_body"></ul>
+          </div>
+        </div>
+      </div>
+      <div id="marking_challenge" class="tab-pane fade">
+        <div class="col-md-12 formpackage">
+          <table id="r_video_table" class="table table-bordered table-striped">
+            <thead>
+            <th>Student Name</th>
+            <th>Unit</th>
+            <th>Submitted Date</th>
+            <th>Mark</th>
+            </thead>
+            <tbody class="tuch_table_body" id="marking_challenge_table_body">
+
+            </tbody>
+          </table>
+
+
+          <div class="col-md-8 col-md-offset-4">
+            <ul class="sync-pagination pagination-sm marking_challenge_table_body"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type='hidden' name='_csrf' id="_csrf" value='<%= _csrf %>'>
+
+
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="tuchMarkModel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Mark Tutor Challenge</h4>
+          </div>
+          <div class="modal-body col-md-12">
+            <form name="markTuchMarkModel">
+              <div class="col-md-12 formEditResource">
+                <div class="row">
+                  <form name="createsection" id="markTuch">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-12">
+
+                          <div class="form-group">
+                            <label for="exampleTextarea">Question</label>
+                            <textarea class="form-control tuchdata"   style="height: 150px" id="question"  name="question" disabled></textarea>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="exampleTextarea">Tutor Wizard Answer </label>
+                            <textarea class="form-control tuchdata"   name="tw_answer"  disabled></textarea>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="exampleTextarea">Student Answer</label>
+                            <textarea class="form-control tuchdata" id="st_answer"  name="st_answer"  disabled></textarea>
+                          </div>
+                          <input type="hidden" id="a_id" name="a_id">
+                          <input type="hidden" id="st_id" name="st_id">
+                          <input type='hidden' name='_csrf' id="_csrf" value='<%= _csrf %>'>
+                        </div>
+                      </div>
+
+                    </div>
+                  </form>
+
+                </div>
+                <div class="form-group col-md-4" id="tuchmarks">
+                  <select id="t_bonus" name="t_bonus" class="form-control">
+                    <option value="">Give The Marks</option>
+                    <option value="10">10%</option>
+                    <option value="20">20%</option>
+                    <option value="30">30%</option>
+                    <option value="40">40%</option>
+                    <option value="50">50%</option>
+                    <option value="60">60%</option>
+                    <option value="70">70%</option>
+                    <option value="80">80%</option>
+                    <option value="90">90%</option>
+                    <option value="100">100%</option>
+
+
+                  </select>
+                </div>
+
+              </div>
+            </form>
+
+          </div>
+
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-primary" id="markTuCh">Mark Submit</button>
+            <button type="button" class="btn btn-secondary" id="seditcancel" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+
+<% block('localScripts', '<script src="../../js/fontend/tutor_challenge_view.js"></script>') %>
+
+

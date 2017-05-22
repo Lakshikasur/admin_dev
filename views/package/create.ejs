@@ -1,0 +1,100 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+
+    <ul class="breadcrumb"><li><a href="/dashboard?auth=<%= auth %>">Dashboard</a></li>
+      <li><a href="/package/init?auth=<%= auth %>">Packages</a></li>
+    </ul>
+
+    <h1 style="margin-top: 0;">
+      Packages
+      <small>create package</small>
+    </h1>
+
+    <div class="col-md-8 col-md-offset-2 well formpackage">
+
+      <div class="row">
+        <form name="createpakages" id="createpakages">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Package Name</label>
+              <input type="text" id="p_name" name="p_name" class="form-control" placeholder="Enter Package Name Here..">
+              </select>
+
+              <div class="help-block"></div>
+            </div>
+
+
+            <div class="form-group">
+              <label>Curriculum Type</label>
+              <select id="c_type" name="c_type" class="form-control">
+                <option value="">Select Curriculum</option>
+                <% for(var i = 0; i < curriculum.length; i++) { %>
+                <option value=<%= curriculum[i].id %>><%= curriculum[i].name %></option>
+                <% } %>
+              </select>
+
+
+
+
+              <div class="help-block"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Grade</label>
+              <select id="g_type" name="g_type" class="form-control">
+                <option value="">Select Grade</option>
+                <% for(var i = 0; i < grade.length; i++) { %>
+                <option value=<%= grade[i].id %>><%= grade[i].grade %></option>
+                <% } %>
+              </select>
+
+              <div class="help-block"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Subject</label>
+              <select class="js-example-basic-multiple form-control" id="s_subject" name="s_subject" multiple="multiple">
+                <% for(var i = 0; i < subjects.length; i++) { %>
+                <option value=<%= subjects[i].id %>><%= subjects[i].name %></option>
+                <% } %>
+              </select>
+              <div class="help-block"></div>
+            </div>
+
+
+            <h4>Package Payment Details</h4>
+            <div class="row">
+
+
+              <div class="form-group col-md-3">
+                <label><%= ptype[0].name %></label>
+                <!--<input type="text" id="pname" name="pname" class="form-control">-->
+                <input type="number" class="form-control currency" id="<%= ptype[0].id %>"  name="monthly" placeholder="price"/>
+              </div>
+              <div class="form-group col-md-3">
+                <label><%= ptype[1].name %></label>
+                <input type="number" class="form-control currency" id="<%= ptype[1].id %>"  name="termly" placeholder="price" />
+              </div>
+              <div class="form-group col-md-3">
+                <label><%= ptype[2].name %></label>
+                <input type="number" class="form-control currency" id="<%= ptype[2].id %>"  name="annually" placeholder="price" />
+              </div>
+            </div>
+            <div id="psucsees_msg">
+            </div>
+            <button type="button" id="createpackage" class="btn btn-primary">Create Package</button>
+          </div>
+          <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+        </form>
+        <%- partial('../layout/common/loader.ejs') %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+
+<% block('localScripts', '<script src="../js/fontend/add.js"></script>') %>

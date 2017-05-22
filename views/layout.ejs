@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="notificationApp">
+  <head>
+    <title><%=typeof title == 'undefined' ? 'Admin Portal' : title%></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/min/angular-moment-picker.min.css">
+    <link rel="stylesheet" href="/min/angular-notification-icons.min.css">
+    <link rel="stylesheet" href="/min/jquery-confirm.min.css">
+    <link rel="stylesheet" href="/min/select2.min.css">
+    <link rel="stylesheet" href="/min/textAngular.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <!--STYLES END-->
+
+
+
+    <!-- Compiled and minified JavaScript -->
+
+  </head>
+
+  <body>
+    <%- body %>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.4.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.3/angular-moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.6.0/js/md5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.1/jquery-confirm.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+    <script src="https://cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular-rangy.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-flow/2.7.4/ng-flow-standalone.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+
+
+
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular-notification-icons.min.js"></script>
+    <script src="/js/dependencies/bootstrap-tagsinput.min.js"></script>
+    <script src="/js/dependencies/jquery-time-duration-picker.min.js"></script>
+    <script src="/js/dependencies/angular-base64.min.js"></script>
+    <script src="/js/dependencies/service_address.js"></script>
+    <script src="/js/dependencies/common-admin-ui.js"></script>
+    <script src="/js/dependencies/aui-min.js"></script>
+    <script src="/js/dependencies/jquery.twbsPagination.min.js"></script>
+    <script src="/js/app.js"></script>
+    <!--SCRIPTS END-->
+    <script type="text/javascript">
+      io.sails.url = 'http://35.154.18.131:8005';
+    </script>
+
+
+
+
+
+
+    <%- blocks.localScripts %>
+  </body>
+</html>

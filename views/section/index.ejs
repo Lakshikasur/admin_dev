@@ -1,0 +1,83 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Section View
+    </h1>
+
+    <p>
+      <a class="btn btn-success" href="/section/create?auth=<%= auth %>">Create Section</a>
+    </p>
+
+    <div class="col-md-12 formpackage">
+
+      <table id="packagetable" class="table table-bordered table-striped">
+
+        <thead>
+        <th>Section Name</th>
+        <th>Packages</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </thead>
+        <tbody id="section_table_data">
+
+
+        </tbody>
+
+
+      </table>
+
+      <div class="col-md-8 col-md-offset-4">
+        <ul class="sync-pagination pagination-sm"></ul>
+      </div>
+
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="sectionEditModel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Edit Section</h4>
+          </div>
+          <div class="modal-body col-md-12">
+            <form name="editPackage">
+              <div class="col-md-12 formpackage">
+                <div class="row">
+                  <form name="createsection" id="editsection">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Section Name</label>
+                        <input type="text" id="sec_name" name="sec_name" class="form-control">
+                        </select>
+                        <div class="help-block"></div>
+                      </div>
+                      <div id="psucsees_msg">
+                      </div>
+                      <input type="hidden" id="section_id" name="section_id">
+                    </div>
+                  </form>
+                  <%- partial('../layout/common/loader.ejs') %>
+                </div>
+              </div>
+              <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+            </form>
+            <%- partial('../layout/common/loader.ejs') %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="seditconfirm">Update Section</button>
+            <button type="button" class="btn btn-secondary" id="seditcancel" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+
+<% block('localScripts', '<script src="../js/fontend/edit_section.js"></script>') %>
+
+

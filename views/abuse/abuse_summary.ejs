@@ -1,0 +1,49 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Report Abuse 
+    </h1>
+   
+    <div class="col-md-12 formpackage">
+      <table id="packagetable" class="table table-bordered table-striped">
+        <thead>
+        <th>Reference</th>
+        <th>Student Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Text</th>
+        <th>Action</th>
+        </thead>
+          <tbody id="abuse_smy_tbl">
+          </tbody>
+      </table>
+    <p>
+    </p><div class="col-md-8 col-md-offset-4">
+        <ul class="sync-pagination pagination-sm"></ul>
+      </div>
+    </div>
+  </div>
+   <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Report Abuse</h4>
+            </div>
+            <div class="modal-body" id="abuse_details">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+<% block('localScripts', '<script src="../../js/fontend/abuse_lib.js"></script>') %>

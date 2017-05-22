@@ -1,0 +1,82 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Tutor Challenge View And Confirm
+    </h1>
+
+    <div class="form-group col-md-12">
+      <div class="row resource_view">
+        <div class="form-group col-md-4">
+          <label>Section</label>
+          <select id="sec_type" name="sec_type" class="form-control">
+            <option value="">Select Section</option>
+            <% for(var i = 0; i < section.length; i++) { %>
+            <option value=<%= section[i].id %>><%= section[i].name %></option>
+            <% } %>
+          </select>
+          <div class="help-block divhide"></div>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Module</label>
+          <select id="m_type" name="m_type" class="form-control">
+            <option value="">Select Module</option>
+          </select>
+          <div class="help-block divhide"></div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Unit</label>
+          <select id="u_type" name="u_type" class="form-control">
+            <option value="">Select Unit</option>
+          </select>
+          <div class="help-block divhide"></div>
+        </div>
+
+
+      </div>
+
+
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab"  data-url="non_active_table_body" href="#non_active">Non Active</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="non_active" class="tab-pane fade in active">
+          <div class="col-md-12 formpackage">
+            <table id="r_video_table" class="table table-bordered table-striped">
+              <button class="btn btn-large btn-primary confirmAll" id="1" data-toggle="confirmation"> Confirm All</button>
+              <thead>
+              <th>Unit Name</th>
+              <th>Student Limit</th>
+              <th>Word Count</th>
+              <th>Created At</th>
+              <th>Confirm</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              </thead>
+              <tbody class="tuch_table_body" id="non_active_table_body">
+
+              </tbody>
+            </table>
+
+
+            <div class="col-md-8 col-md-offset-4">
+              <ul class="sync-pagination pagination-sm non_active_table_body"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <input type='hidden' name='_csrf' id="_csrf" value='<%= _csrf %>'>
+    </div>
+
+
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+
+<% block('localScripts', '<script src="../js/fontend/tutor_challenge_active.js"></script>') %>
+
+

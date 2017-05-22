@@ -1,0 +1,139 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Packages View
+    </h1>
+
+    <p>
+      <a class="btn btn-success" href="/package/create?auth=<%= auth %>">Create Packages</a>
+    </p>
+
+    <div class="col-md-12 formpackage">
+
+      <table id="packagetable" class="table table-bordered table-striped">
+
+        <thead>
+        <th>Package Name</th>
+        <th>Curriculum Type</th>
+        <th>Grade</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </thead>
+        <tbody id="package_table_data">
+
+        </tbody>
+
+      </table>
+
+      <div class="col-md-8 col-md-offset-4">
+        <ul class="sync-pagination pagination-sm"></ul>
+      </div>
+
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="packagemodel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Edit Package</h4>
+          </div>
+          <div class="modal-body col-md-12">
+            <form name="editPackage">
+              <div class="col-md-12">
+                <div class="form-group col-md-10 editpackgemodal" id="divpname">
+                  <label>Package Name<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                  <input type="text" id="p_name" name="p_name" class="form-control" disabled>
+                  <div class="help-block"></div>
+                </div>
+
+          <!--      <div class="form-group col-md-10 editpackgemodal"  id="divcname">
+                  <label>Curriculum Type<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                  <input type="text" id="c_type"  name="c_type" class="form-control" disabled>
+                  <div class="help-block"></div>
+                </div>-->
+
+                 <div class="form-group col-md-10 editpackgemodal"  id="divcname">
+                   <label>Curriculum Type<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                   <select id="c_type" name="c_type" class="form-control" disabled>
+                   <option value="">Select Curriculum</option>
+                  </select>
+
+                  <div class="help-block"></div>
+                </div>
+
+             <!--   <div class="form-group col-md-10 editpackgemodal"  id="divgname">
+                  <label>Grade<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                  <input type="text" id="g_type" name="g_type" class="form-control" disabled>
+                  <div class="help-block"></div>
+                </div>-->
+
+                <div class="form-group col-md-10 editpackgemodal"  id="divgname">
+                  <label>Grade<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                  <select id="g_type" name="g_type" class="form-control" disabled>
+                  <option value="">Select Grade</option>
+                  </select>
+
+                  <div class="help-block"></div>
+                </div>
+
+               <!-- <div class="form-group col-md-10 editpackgemodal"  id="divsname">
+                  <label>Subject<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                  <select class="js-example-basic-multiple form-control" id="subject_modal" name="s_subject" multiple="multiple" disabled>
+                  </select>
+                  <div class="help-block"></div>
+                </div>-->
+
+                <div class="form-group col-md-10 editpackgemodal"  id="divsname">
+                  <label>Subject<span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                  <select class="js-example-basic-multiple form-control" id="subject_modal" name="s_subject" multiple="multiple" disabled>
+                  </select>
+                  <div class="help-block"></div>
+                </div>
+
+                <div class="form-group col-md-10">
+                <h4>Package Payment Details</h4>
+                </div>
+
+                <div class="row col-md-10">
+
+                  <div class="form-group col-md-3 editpackgemodal"  id="divmonthly">
+                    <label><%= ptype[0].name %><span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                    <!--<input type="text" id="pname" name="pname" class="form-control">-->
+                    <input type="number" class="form-control currency" id="<%= ptype[0].id %>"  name="monthly" placeholder="price"/>
+                  </div>
+                  <div class="form-group col-md-3 editpackgemodal"  id="divtermly">
+                    <label><%= ptype[1].name %><span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                    <input type="number" class="form-control currency" id="<%= ptype[1].id %>"  name="termly" placeholder="price" />
+                  </div>
+                  <div class="form-group col-md-3 editpackgemodal"  id="divannually">
+                    <label><%= ptype[2].name %><span class="glyphicon glyphicon-remove-circle" style="color:#286090"></span></label>
+                    <input type="number" class="form-control currency" id="<%= ptype[2].id %>"  name="annually" placeholder="price" />
+                  </div>
+                </div>
+                <div id="psucsees_msg">
+                </div>
+                <input type="hidden" id="package_id" name="package_id">
+              </div>
+              <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+            </form>
+            <%- partial('../layout/common/loader.ejs') %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="peditconfirm">Update Package</button>
+            <button type="button" class="btn btn-secondary" id="peditcancel" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+
+<% block('localScripts', '<script src="../js/fontend/packageView.js"></script>') %>
+
+

@@ -1,0 +1,205 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view">
+    <h1 style="margin-top: 0;">
+      Resource View And Confirm
+    </h1>
+
+    <div class="form-group col-md-12">
+      <div class="row resource_view">
+        <div class="form-group col-md-4">
+          <label>Section</label>
+          <select id="sec_type" name="sec_type" class="form-control">
+            <option value="">Select Section</option>
+            <% for(var i = 0; i < section.length; i++) { %>
+            <option value=<%= section[i].id %>><%= section[i].name %></option>
+            <% } %>
+          </select>
+          <div class="help-block divhide"></div>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Module</label>
+          <select id="m_type" name="m_type" class="form-control">
+            <option value="">Select Module</option>
+          </select>
+          <div class="help-block divhide"></div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Unit</label>
+          <select id="u_type" name="u_type" class="form-control">
+            <option value="">Select Unit</option>
+          </select>
+          <div class="help-block divhide"></div>
+        </div>
+
+
+      </div>
+
+
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" data-path="1"  data-url="r_video_table_body" href="#video">Video</a></li>
+        <li><a data-toggle="tab"  data-path="2"  data-url="r_anim_table_body" href="#anim">Animation</a></li>
+        <li><a data-toggle="tab" data-path="3"  data-url="r_pres_table_body" href="#pres">Presentation</a></li>
+        <li><a data-toggle="tab" data-path="4"  data-url="r_ia_table_body" href="#ia">Interactive Activity</a></li>
+        <li><a data-toggle="tab" data-path="6"  data-url="r_kn_table_body" href="#kn">Knowledge Nugget</a></li>
+        <li><a data-toggle="tab" data-path="5"  data-url="r_rn_table_body" href="#rn">Revision Notes</a></li>
+       <!-- <li><a data-toggle="tab" href="#wos">Worksheets</a></li>-->
+      </ul>
+      <div class="tab-content">
+        <div id="video" class="tab-pane fade in active">
+
+
+          <div class="col-md-12 formpackage">
+
+
+            <table id="r_video_table" class="table table-bordered table-striped">
+
+              <button class="btn btn-large btn-primary confirmAll" id="1" data-path="r_video_table_body" data-toggle="confirmation"> Confirm All Videos</button>
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>Confirm</th>
+              <th>Delete</th>
+              </thead>
+              <tbody class="r_table_body" id="r_video_table_body">
+
+              </tbody>
+            </table>
+
+
+            <div class="col-md-8 col-md-offset-4">
+              <ul class="sync-pagination pagination-sm r_video_table_body"></ul>
+            </div>
+          </div>
+        </div>
+        <div id="anim" class="tab-pane fade">
+
+          <div class="col-md-12  formpackage">
+            <table id="r_anim_table" class="table table-bordered table-striped">
+
+              <button class="btn btn-large btn-primary confirmAll" data-path="r_anim_table_body"  id="2" data-toggle="confirmation"> Confirm All Animations</button>
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>Confirm</th>
+              <th>Delete</th>
+              </thead>
+              <tbody class="r_table_body" id="r_anim_table_body">
+
+              </tbody>
+
+            </table>
+            <div class="col-md-8 col-md-offset-4">
+              <ul class="sync-pagination pagination-sm r_anim_table_body"></ul>
+            </div>
+          </div>
+        </div>
+        <div id="pres" class="tab-pane fade">
+          <div class="col-md-12   formpackage">
+            <table id="r_pres_table" class="table table-bordered table-striped">
+
+              <button class="btn btn-large btn-primary confirmAll" id="3" data-path="r_pres_table_body" data-toggle="confirmation"> Confirm All Presentations</button>
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>Confirm</th>
+              <th>Delete</th>
+              </thead>
+              <tbody class="r_table_body" id="r_pres_table_body">
+
+              </tbody>
+
+
+            </table>
+            <div class="col-md-8 col-md-offset-4">
+              <ul class="sync-pagination pagination-sm r_pres_table_body"></ul>
+            </div>
+          </div>
+        </div>
+        <div id="ia" class="tab-pane fade">
+          <div class="col-md-12   formpackage">
+            <table id="r_ia_table" class="table table-bordered table-striped">
+
+              <button class="btn btn-large btn-primary  confirmAll" id="4" data-path="r_ia_table_body" data-toggle="confirmation"> Confirm All Interactive Activity</button>
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>Confirm</th>
+              <th>Delete</th>
+              </thead>
+              <tbody class="r_table_body" id="r_ia_table_body">
+
+              </tbody>
+
+
+            </table>
+            <div class="col-md-8 col-md-offset-4">
+              <ul class="sync-pagination pagination-sm r_ia_table_body"></ul>
+            </div>
+          </div>
+        </div>
+        <div id="rn" class="tab-pane fade">
+          <div class="col-md-12   formpackage">
+            <table id="r_rn_table" class="table table-bordered table-striped">
+
+              <button class="btn btn-large btn-primary confirmAll" id="5" data-path="r_rn_table_body" data-toggle="confirmation"> Confirm All Revision Notes</button>
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>Confirm</th>
+              <th>Delete</th>
+              </thead>
+              <tbody class="r_table_body" id="r_rn_table_body">
+
+              </tbody>
+
+            </table>
+            <div class="col-md-8 col-md-offset-4">
+              <ul class="sync-pagination pagination-sm r_rn_table_body"></ul>
+            </div>
+          </div>
+        </div>
+        <div id="kn" class="tab-pane fade">
+          <div class="col-md-12 formpackage">
+            <table id="r_kn_table" class="table table-bordered table-striped">
+
+              <button class="btn btn-large btn-primary confirmAll" id="6" data-path="r_kn_table_body" data-toggle="confirmation"> Confirm All Knowledge Nugget</button>
+              <thead>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Sub-Topic</th>
+              <th>Confirm</th>
+              <th>Delete</th>
+              </thead>
+              <tbody class="r_table_body" id="r_kn_table_body">
+
+              </tbody>
+
+
+            </table>
+            <div class="col-md-8 col-md-offset-4">
+              <ul class="sync-pagination pagination-sm r_kn_table_body"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <input type='hidden' name='_csrf' id="_csrf" value='<%= _csrf %>'>
+    </div>
+
+
+  </div>
+</div>
+
+
+<%- partial('../layout/common/footer.ejs') %><!-- footer layout-->
+
+<% block('localScripts', '<script src="../js/fontend/resource_confirm.js"></script>') %>
+
+

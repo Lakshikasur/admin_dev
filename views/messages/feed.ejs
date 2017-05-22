@@ -1,0 +1,28 @@
+<%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+<%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+<div class="message-container content_view">
+  <div class="massge-containerinside col-md-8 col-md-offset-2">
+    <div class="page-header" style="padding: 0; margin: 0;">
+      <h1 style="margin-top: 0;">
+        Notification
+        <small>Whats New</small>
+      </h1>
+    </div>
+    <section ng-controller="NotificationCtrl" ng-cloak>
+      <div ng-repeat="entry in notificationEntries | orderBy:'+'" class="animation notification-entry col-lg-12" ng-if="entry.userID==getID.id">
+        <span class="pull-right text-muted" am-time-ago="entry.createdAt" ng-cloak></span>
+        <small class="meta text-muted col-sm-6" ng-cloak>
+          {{entry.notification}}
+        </small>
+        <small class="meta text-muted col-sm-3" ng-cloak>
+          {{entry.link}}
+        </small>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+<!----><!-- footer layout-->
+
+

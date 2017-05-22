@@ -1,0 +1,27 @@
+{
+  "name": "nodesails",
+  "description": "a sails application",
+  "main": "app.js",
+  "authors": [
+    "lakshithaf@gmail.com"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "components-font-awesome": "^4.6.3",
+    "font-awesome": "^4.6.3",
+    "jquery": "^1.8.3",
+    "select2": "^4.0.3",
+    "jquery-confirm2": "craftpip/jquery-confirm#^3.0.1",
+    "angular-notification-icons": "^0.4.4",
+    "bootstrap-tagsinput": "^0.8.0",
+    "jquery-time-duration-picker": "^2.1.2",
+    "angular-moment-picker": "moment-picker#^0.9.4",
+    "textAngular": "^1.5.16",
+    "angular-quill": "^0.9.1",
+    "ngQuill": "ngquill#1.0.10",
+    "angular-trix": "^1.0.2",
+    "angular-ui-tinymce": "^0.0.18"
+  }
+}

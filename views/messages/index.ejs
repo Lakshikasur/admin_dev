@@ -1,0 +1,155 @@
+<div class="wrap">
+  <%- partial('../layout/common/navbar_top.ejs') %><!-- navbartop layout-->
+  <%- partial('../layout/common/sidebar.ejs') %><!-- sidebar layout-->
+  <div class="content_view" id="allusers">
+
+    <h1 style="margin-top: 0;">
+      Messages
+      <small>Whats New</small>
+    </h1>
+
+    <div class="col-md-12 message_main">
+      <div class="col-md-12 adminMsgPanel">
+        <ul class="nav nav-tabs" id="product-table">
+          <li><a href="#tabs-inbox" data-toggle="tab">Inbox</a>
+          <li><a href="#tabs-reply" data-toggle="tab">Send</a>
+          </li>
+        </ul>
+        <div class="tab-content msgTab">
+          <div class="tab-pane" id="tabs-inbox" ng-controller="MessageCtrl" ng-cloak>
+            <table class="table table-condensed table-bordered table-striped volumes msgtble">
+              <tbody>
+              <tr class="msgTr" ng-repeat="message in messageEntries">
+                <td width="5%">
+                  <div class='check_item'><input type='checkbox' class='viewdmail_in viewdmail'
+                                                 id='viewdmail'
+                                                 name='viewdmail' value=''><label for='viewdmail'/>
+                  </div>
+                </td>
+
+                <td class="h_inbox" width="15%" id="{{ message.id }}" ng-cloak >{{ message.subject }}</td>
+                <td class="h_inbox" width="65%" id="{{ message.id }}" ng-cloak>{{ message.content }}</td>
+                <td class="h_inbox" width="15%" id="{{ message.id }}" ng-cloak>{{ message.date_time }}</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane" id="tabs-reply" ng-controller="MessageReplyCtrl" ng-cloak>
+            <table class="table table-condensed table-bordered table-striped volumes msgtbleReply">
+              <tbody>
+              <tr class="msgReplyTr" ng-repeat="reply in messageReplyEntries">
+                <td width="5%">
+                  <div class='check_item'><input type='checkbox' class='viewdmail_in viewdmail'
+                                                 id='viewdmail'
+                                                 name='viewdmail' value=''><label for='viewdmail'/>
+                  </div>
+                </td>
+
+                <td class="h_reply" width="15%" id="{{ reply.id }}">{{ reply.subject }}</td>
+                <td class="h_reply" width="65%"id="{{ reply.id }}">{{ reply.content }}</td>
+                <td class="h_reply" width="15%" id="{{ reply.id }}">{{ reply.date_time }}</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-12 msgActionRow">
+        <div class="action col-md-6 col-md-offset-2">
+          <div class="col-md-4 launch-icon-panel">
+            <a href=""><i class="fa fa-trash-o fa-1x"></i></a><label>Delete</label>
+          </div>
+          <div class="col-md-4 launch-icon-panel">
+            <a href=""><i class="fa fa-folder-open-o fa-1x"></i></a><label>Mark as read</label>
+          </div>
+          <div class="col-md-4 launch-icon-panel">
+            <a href=""><i class="fa fa-folder-open-o fa-1x"></i></a><label>Mark as unread</label>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="col-md-12 adminMsgReply hide">
+        <ul class="breadcrumb">
+          <li><a href="/dashboard?auth=<%= auth %>">Dashboard</a></li>
+          <li class="inbox"><a href="#">Inbox</a></li>
+        </ul>
+        <div class="col-md-12 msgTopic">
+        </div>
+        <div class="row col-md-12">
+          <div class="col-md-8 msgUserData">
+            <img src="/images/profile_mask.png" class="ajn" style="background-color: #cccccc"
+                 aria-hidden="true">
+            <span id="messageUserName"></span>
+            <span id="messageUserEmail"></span>
+            <span id="messageHelperName"></span>
+          </div>
+          <div class="col-md-3 msgMessageSendTime">
+          </div>
+
+        </div>
+        <div class="col-md-10 msgUserData">
+        </div>
+        <div class="col-md-10 msgContent">
+        </div>
+        <div class="col-md-10 msgUserDataAttagement">
+        </div>
+        <div class="row col-md-12 msgUserDataReply hide">
+
+        </div>
+
+
+        <div class="reply-header col-md-12 ">
+          <h4 class="modal-title">Reply</h4>
+        </div>
+        <div class="form-group row modal-body col-md-12 ">
+          <form role="form" class="form-horizontal">
+            <div class="col-md-1"><img src="/images/profile_mask.png" class="ajn "
+                                       style="background-color: #cccccc" aria-hidden="true"></div>
+            <div class=" col-md-9">
+                            <textarea rows="10" cols="30" class="form-control col-md-10" id="t_rcontent"
+                                      name="t_rcontent"></textarea>
+            </div>
+            <input type="hidden" id="msg_id" name="msg_id">
+
+            <div class="form-group row col-md-12">
+              <div class="col-md-1"></div>
+              <div class="col-md-9">
+                <button class="btn btn-send" type="button" id="t_reply">Send</button>
+                <span class="btn green fileinput-button"><input type="file" id="fileupload"
+                                                                name="files[]" multiple=""></span>
+              </div>
+            </div>
+            <input type='hidden' id='_csrf' name='_csrf' value='<%= _csrf %>'>
+          </form>
+        </div>
+
+      </div>
+
+
+    </div>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         id="msgAttachmentViewModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Attachment</h4>
+          </div>
+          <div class="modal-body enlargeMsgAttachment col-md-12">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="moeditcancel" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<% block('localScripts', '<script src="../js/fontend/adminMessages.js"></script>') %>
+<%- partial('../layout/common/footer.ejs') %>
+
+
